@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background & Surface */
+    --background: 200 60% 97%;
+    --foreground: 202 13% 11%;
+
+    --surface: 200 60% 97%;
+    --on-surface: 202 13% 11%;
+    --surface-variant: 197 24% 88%;
+    --on-surface-variant: 200 11% 27%;
+
+    /* Primary */
+    --primary: 191 91% 26%;
+    --on-primary: 0 0% 100%;
+    --primary-container: 197 100% 85%;
+    --on-primary-container: 191 100% 19%;
+
+    /* Secondary */
+    --secondary: 198 16% 35%;
+    --on-secondary: 0 0% 100%;
+    --secondary-container: 197 47% 87%;
+    --on-secondary-container: 199 22% 26%;
+
+    /* Tertiary */
+    --tertiary: 237 16% 42%;
+    --on-tertiary: 0 0% 100%;
+    --tertiary-container: 240 100% 94%;
+    --on-tertiary-container: 238 22% 33%;
+
+    /* Error */
+    --error: 0 74% 41%;
+    --on-error: 0 0% 100%;
+    --error-container: 7 100% 91%;
+    --on-error-container: 356 100% 29%;
+
+    /* Outline & Border */
+    --outline: 200 6% 47%;
+    --outline-variant: 197 13% 78%;
+
+    /* Shadow / Elevation */
+    --shadow: 0 0% 0%;
+
+    /* Inverse */
+    --inverse-surface: 204 8% 18%;
+    --inverse-on-surface: 205 28% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
+}
