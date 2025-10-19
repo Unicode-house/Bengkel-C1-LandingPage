@@ -56,7 +56,7 @@ const About = () => {
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
             Tentang Kami
@@ -73,16 +73,16 @@ const About = () => {
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
           >
             <h3 className="text-3xl font-semibold text-foreground">
               Mandiri Tehnik Hade
             </h3>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Sejak 2009, kami telah melayani ribuan klien dengan dedikasi penuh.
-              Dari proyek rumah tinggal hingga bangunan komersial, kami hadir
-              sebagai mitra terpercaya Anda dalam mewujudkan konstruksi yang
-              berkualitas.
+              Sejak 2009, kami telah melayani ribuan klien dengan dedikasi
+              penuh. Dari proyek rumah tinggal hingga bangunan komersial, kami
+              hadir sebagai mitra terpercaya Anda dalam mewujudkan konstruksi
+              yang berkualitas.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Tim mekanik kami yang berpengalaman siap memberikan solusi terbaik
@@ -91,17 +91,15 @@ const About = () => {
           </motion.div>
 
           <motion.div
-            className="relative rounded-2xl overflow-hidden shadow-card hover-lift"
+            className="relative rounded-2xl overflow-hidden shadow-card hover-lift h-80 bg-cover bg-center"
+            style={{ backgroundImage: `url(${teamImage})` }}
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
           >
-            <img
-              src={teamImage}
-              alt="Tim Mekanik Mandiri Tehnik Hade"
-              className="rounded-lg shadow-card hover-lift"
-            />
+            {/* Optional overlay kalau mau efek gradasi */}
+            <div className="absolute inset-0 bg-black/10"></div>
           </motion.div>
         </div>
 
@@ -111,7 +109,7 @@ const About = () => {
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
         >
           {values.map((value, index) => (
             <motion.div
@@ -123,7 +121,9 @@ const About = () => {
               <h4 className="font-semibold text-lg mb-2 text-card-foreground">
                 {value.title}
               </h4>
-              <p className="text-sm text-muted-foreground">{value.description}</p>
+              <p className="text-sm text-muted-foreground">
+                {value.description}
+              </p>
             </motion.div>
           ))}
         </motion.div>

@@ -59,7 +59,7 @@ const BookingForm = () => {
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
@@ -76,7 +76,7 @@ const BookingForm = () => {
             className="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-lg space-y-6 border border-white/20"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             {/* Nama */}
@@ -85,7 +85,7 @@ const BookingForm = () => {
               variants={fieldVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               custom={0}
             >
               <Label htmlFor="name" className="text-sm font-medium text-foreground">
@@ -107,7 +107,7 @@ const BookingForm = () => {
               variants={fieldVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               custom={1}
             >
               <Label htmlFor="phone" className="text-sm font-medium text-foreground">
@@ -130,7 +130,7 @@ const BookingForm = () => {
               variants={fieldVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               custom={2}
             >
               <Label htmlFor="service" className="text-sm font-medium text-foreground rounded-xl">
@@ -163,7 +163,7 @@ const BookingForm = () => {
               variants={fieldVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               custom={3}
             >
               <Label htmlFor="notes" className="text-sm font-medium text-foreground rounded-xl">
@@ -183,7 +183,7 @@ const BookingForm = () => {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ delay: 0.5 }}
             >
               <Button

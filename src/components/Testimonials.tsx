@@ -62,7 +62,7 @@ const Testimonials = () => {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
@@ -91,7 +91,7 @@ const Testimonials = () => {
                   variants={cardVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
+                  viewport={{ once: false, amount: 0.2 }}
                 >
                   <Card className="h-full shadow-card hover-lift rounded-xl focus:outline-none focus:ring-0">
                     <CardContent className="p-6 flex flex-col h-full bg-[#F5FAFD] rounded-xl">

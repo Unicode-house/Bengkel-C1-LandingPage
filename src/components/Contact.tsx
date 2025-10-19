@@ -32,7 +32,7 @@ const Contact = () => {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">Kontak Kami</h2>
@@ -51,7 +51,7 @@ const Contact = () => {
                 variants={itemVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 custom={index}
               >
                 <div className="bg-primary/10 p-3 rounded-lg">
@@ -77,7 +77,7 @@ const Contact = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <h3 className="font-semibold text-lg mb-4 text-card-foreground">Media Sosial</h3>
@@ -105,7 +105,7 @@ const Contact = () => {
             className="h-[400px] rounded-xl overflow-hidden shadow-card"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <iframe

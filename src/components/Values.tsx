@@ -34,7 +34,7 @@ const Values = () => {
               className="text-4xl md:text-5xl font-bold mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6 }}
             >
               Nilai & Filosofi
@@ -48,13 +48,13 @@ const Values = () => {
                   variants={listVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true }}
+                  viewport={{ once: false}}
                   custom={index}
                 >
                   <div className="w-2 h-2 bg-accent rounded-full"></div>
                   <span className="text-lg font-medium">{value}</span>
                 </motion.div>
-              ))}
+            ))}
             </div>
           </div>
 
@@ -63,7 +63,7 @@ const Values = () => {
             className="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/20"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
           >
             <blockquote className="text-white">
