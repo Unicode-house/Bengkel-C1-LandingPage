@@ -9,22 +9,39 @@ const listVariants: Variants = {
   visible: (i: number) => ({
     opacity: 1,
     x: 0,
-    transition: { delay: i * 0.15, duration: 0.5, ease: "easeOut" },
+    transition: { delay: i * 0.15, duration: 0.4, ease: "easeOut" },
   }),
 };
 
 const Values = () => {
   return (
-    <section
-      className="py-20 relative"
-      style={{
-        backgroundImage: `url(${valuesBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
-    >
-      <div className="absolute inset-0 gradient-overlay"></div>
+    <section className="py-20 relative overflow-hidden">
+      {/* Background Image with lazy load */}
+      <motion.div
+        className="absolute inset-0 will-change-transform"
+        style={{
+          backgroundImage: `url(${valuesBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        onContextMenu={(e) => e.preventDefault()} 
+        initial={{ scale: 1.05 }}
+        whileInView={{ scale: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+      >
+        <div className="absolute inset-0 gradient-overlay"></div>
+      </motion.div>
+
+      {/* preload image hidden for lazy load */}
+      <img
+        src={valuesBg}
+        alt="Background Values"
+        loading="lazy"
+        width="1920"
+        height="1080"
+        className="hidden"
+        onContextMenu={(e) => e.preventDefault()}
+      />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -35,7 +52,7 @@ const Values = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
             >
               Nilai & Filosofi
             </motion.h2>
@@ -48,13 +65,13 @@ const Values = () => {
                   variants={listVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: false}}
+                  viewport={{ once: false }}
                   custom={index}
                 >
                   <div className="w-2 h-2 bg-accent rounded-full"></div>
                   <span className="text-lg font-medium">{value}</span>
                 </motion.div>
-            ))}
+              ))}
             </div>
           </div>
 
@@ -64,14 +81,16 @@ const Values = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
           >
             <blockquote className="text-white">
               <p className="text-xl md:text-2xl font-light leading-relaxed italic mb-4">
                 "Dengan semangat yang kuat dan niat yang tulus, kami menciptakan solusi 
                 kreatif dan menjaga profesionalisme demi kemajuan bersama."
               </p>
-              <footer className="text-accent font-semibold">— Mandiri Tehnik Hade</footer>
+              <footer className="text-accent font-semibold">
+                — Mandiri Tehnik Hade
+              </footer>
             </blockquote>
           </motion.div>
         </div>

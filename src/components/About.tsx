@@ -93,12 +93,12 @@ const About = () => {
           <motion.div
             className="relative rounded-2xl overflow-hidden shadow-card hover-lift h-80 bg-cover bg-center"
             style={{ backgroundImage: `url(${teamImage})` }}
+            onContextMenu={(e) => e.preventDefault()} 
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
             viewport={{ once: false, amount: 0.3 }}
           >
-            {/* Optional overlay kalau mau efek gradasi */}
             <div className="absolute inset-0 bg-black/10"></div>
           </motion.div>
         </div>

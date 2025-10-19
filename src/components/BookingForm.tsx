@@ -143,7 +143,7 @@ const BookingForm = () => {
               >
                 <SelectTrigger
                   id="service"
-                  className="w-full rounded-lg border border-outline/30 focus:ring-2 focus:ring-primary/40 rounded-xl"
+                  className="w-full  border border-outline/30 focus:ring-2 focus:ring-primary/40 rounded-xl"
                 >
                   <SelectValue placeholder="Pilih jenis layanan" />
                 </SelectTrigger>

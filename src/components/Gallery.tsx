@@ -43,7 +43,9 @@ const Gallery = () => {
     <section id="gallery" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">Galeri Proyek</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
+            Galeri Proyek
+          </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Hasil karya kami yang telah dipercaya oleh ratusan klien
           </p>
@@ -60,11 +62,19 @@ const Gallery = () => {
               viewport={{ once: false, amount: 0.2 }}
             >
               <div className="aspect-[4/3] overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                <picture>
+                  <source srcSet={`${project.image}?as=webp`} type="image/webp" />
+                  <source srcSet={project.image} type="image/jpeg" />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    width="800"
+                    height="600"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 will-change-transform select-none pointer-events-none"
+                    onContextMenu={(e) => e.preventDefault()}
+                  />
+                </picture>
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">

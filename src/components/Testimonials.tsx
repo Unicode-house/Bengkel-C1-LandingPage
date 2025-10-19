@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/carousel";
 import { motion, Variants } from "framer-motion";
 
+
+
 const testimonials = [
   {
     name: "Bpk. H. Eko Santoso",

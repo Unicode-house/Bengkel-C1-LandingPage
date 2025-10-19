@@ -34,10 +34,10 @@ const Hero = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        initial={{ scale: 1.1 }}
+        onContextMenu={(e) => e.preventDefault()} 
+        initial={{ scale: 1.05 }}
         animate={{ scale: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
-        viewport={{once: false}}
       >
         <div className="absolute inset-0 gradient-hero bg-black/50"></div>
       </motion.div>
