@@ -6,23 +6,7 @@ import { Button } from "./ui/button";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-      setIsMobileMenuOpen(false);
-    }
-  };
+  const [activeSection, setActiveSection] = useState<string>("hero");
 
   const menuItems = [
     { label: "Home", id: "hero" },
@@ -33,6 +17,72 @@ const Navbar = () => {
     { label: "Booking", id: "booking" },
     { label: "Kontak", id: "contact" },
   ];
+
+  useEffect(() => {
+
+    if (location.pathname === "/projects") {
+      setActiveSection("gallery");
+      return;
+    }
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+
+      // Kalau masih di atas, paksa Home aktif
+      if (window.scrollY < 200) {
+        setActiveSection("hero");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    const sections = menuItems.map((item) => document.getElementById(item.id));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let visibleSection = activeSection;
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleSection = entry.target.id;
+          }
+        });
+        if (visibleSection !== activeSection) {
+          setActiveSection(visibleSection);
+        }
+      },
+      {
+        rootMargin: "-70px 0px -10% 0px", // lebih aman buat section pendek
+        threshold: 0.1,
+      }
+    );
+
+    sections.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      sections.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, [activeSection]);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80; // tinggi navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+
+      // langsung update active section biar ga delay
+      setActiveSection(sectionId);
+      setTimeout(() => setActiveSection(sectionId), 400);
+
+      setIsMobileMenuOpen(false);
+    }
+  };
 
   return (
     <nav
@@ -57,10 +107,14 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-[#05677E] hover:text-accent transition-colors duration-300 relative group text-sm font-medium"
+                className={`transition-colors duration-300 relative text-sm font-medium
+                  ${
+                    activeSection === item.id
+                      ? "text-black font-bold after:content-[''] after:block after:w-full after:h-[2px] after:bg-accent after:mt-1"
+                      : "text-[#05677E] hover:text-accent"
+                  }`}
               >
                 {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
           </div>
@@ -69,7 +123,9 @@ const Navbar = () => {
           <div className="hidden lg:block">
             <Button
               variant="hero"
-              onClick={() => window.open("https://wa.me/6281234567890", "_blank")}
+              onClick={() =>
+                window.open("https://wa.me/6281234567890", "_blank")
+              }
               className="flex items-center gap-2 rounded-xl text-white bg-[#344A52] hover:bg-[#05677E] transition-colors duration-300"
             >
               <FaWhatsapp className="text-lg text-white" />
@@ -97,14 +153,21 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-[#05677E] hover:text-accent transition-colors duration-300 text-left py-2 font-medium"
+                className={`transition-colors duration-300 text-left py-2 font-medium
+                  ${
+                    activeSection === item.id
+                      ? "text-black font-bold underline"
+                      : "text-[#05677E] hover:text-accent"
+                  }`}
               >
                 {item.label}
               </button>
             ))}
             <Button
               variant="hero"
-              onClick={() => window.open("https://wa.me/6281234567890", "_blank")}
+              onClick={() =>
+                window.open("https://wa.me/6281234567890", "_blank")
+              }
               className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#05677E] text-white hover:bg-[#344A52]"
             >
               <FaWhatsapp className="text-lg text-white" />

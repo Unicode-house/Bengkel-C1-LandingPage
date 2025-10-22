@@ -5,28 +5,29 @@ import canopyImage from "@/assets/project-canopy.jpg";
 import foldingImage from "@/assets/project-folding.jpg";
 import renovationImage from "@/assets/project-renovation.jpg";
 import { motion, Variants } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const projects = [
   {
-    image: gateImage,
+    image: "/src/assets/foto34.jpg",
     title: "Pagar Besi Minimalis",
     location: "Bogor",
     description: "Pagar custom dengan desain modern dan elegan",
   },
   {
-    image: canopyImage,
+    image: "/src/assets/foto41.jpg",
     title: "Kanopi Polycarbonate",
     location: "Jakarta",
     description: "Kanopi modern untuk area entrance",
   },
   {
-    image: foldingImage,
+    image: "/src/assets/foto9.jpg",
     title: "Folding Gate Alumunium",
     location: "Depok",
     description: "Pintu lipat untuk toko modern",
   },
   {
-    image: renovationImage,
+    image: "/src/assets/foto40.jpg",
     title: "Renovasi Bangunan Komersial",
     location: "Tangerang",
     description: "Renovasi facade bangunan profesional",
@@ -39,8 +40,10 @@ const cardVariants: Variants = {
 };
 
 const Gallery = () => {
+  const navigate = useNavigate(); 
+
   return (
-    <section id="gallery" className="py-20 bg-background">
+    <section id="gallery" className="min-h-screen py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
@@ -88,7 +91,12 @@ const Gallery = () => {
         </div>
 
         <div className="text-center">
-          <Button size="lg" variant="industrial" className="text-white rounded-xl">
+          <Button
+            size="lg"
+            variant="industrial"
+            className="text-white rounded-xl"
+            onClick={() => navigate("/projects")} // ✅ ini udah bener
+          >
             Lihat Semua Proyek
           </Button>
         </div>
