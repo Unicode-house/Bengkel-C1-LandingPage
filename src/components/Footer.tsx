@@ -2,7 +2,7 @@
 import { MapPin, Phone } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 // Import gambar dari assets
-import engineeringImg from "@/assets/engineering.jpg";
+import engineeringImg from "/assets/engineering.jpg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
