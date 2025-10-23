@@ -33,7 +33,8 @@ const projects = [
     category: "Pagar & Trails",
     detail:
       "Fabrikasi pagar besi berfokus pada kekuatan struktural dan presisi estetika. Proses ini meliputi fabrikasi rangka utama dan panel custom (minimalis, tempa, atau pola laser-cut) menggunakan material besi hollow atau solid. Setiap sambungan mendapatkan pengelasan penuh yang kemudian dihaluskan (grinding) untuk hasil yang rapi. Pengerjaan diakhiri dengan pelapisan cat dasar anti-rust (anti karat) dan beberapa lapis cat finishing untuk memastikan durabilitas tinggi terhadap cuaca dan kondisi eksterior.",
-    testimonial: "Hasil akhirnya benar-benar memuaskan. Pekerjaannya rapi, detail, dan sangat kokoh. Saya tidak ragu merekomendasikan Mandiri Teknik untuk pekerjaan pintu gerbang.",
+    testimonial:
+      "Hasil akhirnya benar-benar memuaskan. Pekerjaannya rapi, detail, dan sangat kokoh. Saya tidak ragu merekomendasikan Mandiri Teknik untuk pekerjaan pintu gerbang.",
   },
   {
     image: "/assets/Kanopi.jpg",
@@ -42,7 +43,8 @@ const projects = [
     category: "Kanopi",
     detail:
       "Proyek instalasi kanopi ini mencakup perakitan rangka struktural (baik menggunakan baja ringan atau besi hollow) yang dirancang untuk menopang atap secara efektif dan mengelola aliran air. Pengerjaan meliputi instalasi tiang dan rangka utama yang kokoh. Pemasangan material atap (seperti Alderon, Spandek, atau polikarbonat) dilakukan dengan presisi tinggi untuk menjamin kekedapan air dan mencegah kebocoran, seringkali diintegrasikan dengan sistem talang air yang rapi.",
-    testimonial: "Kami bersyukur bisa mempunyai kanopi dengan atap yang bagus (Alderon), sehingga tidak jadi penghalang jamaah untuk beribadah ke mesjid karena teras jadi aman dari hujan.",
+    testimonial:
+      "Kami bersyukur bisa mempunyai kanopi dengan atap yang bagus (Alderon), sehingga tidak jadi penghalang jamaah untuk beribadah ke mesjid karena teras jadi aman dari hujan.",
   },
   {
     image: "/assets/Jendela.jpg",
@@ -51,7 +53,8 @@ const projects = [
     category: "Kusen, Pintu & Jendela",
     detail:
       "Proyek ini melibatkan perakitan dan instalasi unit kusen, pintu, dan jendela menggunakan material aluminium. Fokus pengerjaan terletak pada pemotongan profil aluminium yang presisi dan perakitan yang rapat untuk memastikan unit kedap air dan udara. Instalasi kaca dan panel menggunakan segel karet berkualitas, dipastikan lurus (level) dan berfungsi mulus.",
-    testimonial: "Alhamdulillah... lalu pintu alumunium kamar mandi, jendela rumah sama pondok, semua dikerjakan kang haji ade, hasilnya baik, rapih.",
+    testimonial:
+      "Alhamdulillah... lalu pintu alumunium kamar mandi, jendela rumah sama pondok, semua dikerjakan kang haji ade, hasilnya baik, rapih.",
   },
   {
     image: "/assets/Pagar2.jpg",
@@ -60,7 +63,8 @@ const projects = [
     category: "Pagar & Trails",
     detail:
       "Fabrikasi pagar besi berfokus pada kekuatan struktural dan presisi estetika. Proses ini meliputi fabrikasi rangka utama dan panel custom (minimalis, tempa, atau pola laser-cut) menggunakan material besi hollow atau solid. Setiap sambungan mendapatkan pengelasan penuh yang kemudian dihaluskan (grinding) untuk hasil yang rapi. Pengerjaan diakhiri dengan pelapisan cat dasar anti-rust (anti karat) dan beberapa lapis cat finishing untuk memastikan durabilitas tinggi terhadap cuaca dan kondisi eksterior.",
-    testimonial: "Hasil akhirnya benar-benar memuaskan. Pekerjaannya rapi, detail, dan sangat kokoh. Saya tidak ragu merekomendasikan Mandiri Teknik untuk pekerjaan pintu gerbang.",
+    testimonial:
+      "Hasil akhirnya benar-benar memuaskan. Pekerjaannya rapi, detail, dan sangat kokoh. Saya tidak ragu merekomendasikan Mandiri Teknik untuk pekerjaan pintu gerbang.",
   },
   {
     image: "/assets/Custom Metalwork.jpg",
@@ -69,7 +73,8 @@ const projects = [
     category: "Custom Metalwork",
     detail:
       "Ini adalah layanan fabrikasi logam custom yang dieksekusi berdasarkan desain atau kebutuhan fungsional spesifik. Prosesnya mencakup interpretasi desain teknis, pemilihan material (plat besi, stainless, profil custom), dan eksekusi fabrikasi presisi. Pengerjaan ini dapat melibatkan pemotongan (cutting), pembengkokan (bending), dan perakitan struktur kompleks.",
-    testimonial: "...selain karena sudah mengenal sebelumnya, ...tentu saja tidak mengurangi kualitas apapun, sehingga pekerjaan perbesiannya, kami percayakan pada mandiri tehnik.",
+    testimonial:
+      "...selain karena sudah mengenal sebelumnya, ...tentu saja tidak mengurangi kualitas apapun, sehingga pekerjaan perbesiannya, kami percayakan pada mandiri tehnik.",
   },
   {
     image: "/assets/pagar3.png",
@@ -78,7 +83,8 @@ const projects = [
     category: "Pagar & Trails",
     detail:
       "Proyek ini adalah fabrikasi pagar minimalis custom menggunakan material hollow galvanis. Prosesnya meliputi pemotongan presisi dan pengelasan penuh (full-weld). Finishing dilakukan dengan teknik cat semprot duco untuk hasil akhir yang halus dan tahan lama.",
-    testimonial: "Desain pagarnya dibuat persis seperti yang saya inginkan. Hasilnya sangat kokoh dan finishing catnya halus. Rumah jadi terlihat lebih modern dan aman.",
+    testimonial:
+      "Desain pagarnya dibuat persis seperti yang saya inginkan. Hasilnya sangat kokoh dan finishing catnya halus. Rumah jadi terlihat lebih modern dan aman.",
   },
   {
     image: "/assets/rolling door.png",
@@ -87,7 +93,8 @@ const projects = [
     category: "Rolling Door & Folding Gate",
     detail:
       "Pemasangan folding gate untuk area komersial ini berfokus pada kelancaran operasional dan keamanan. Menggunakan plat besi tebal, sistem rel presisi, dan bearing roda berkualitas tinggi untuk memastikan pintu dapat dioperasikan dengan ringan dan terkunci aman.",
-    testimonial: "Saya pesan rolling door untuk garasi. Pemasangannya cepat dan hasilnya sangat mulus. Pintunya ringan dioperasikan dan terasa sangat aman saat dikunci.",
+    testimonial:
+      "Saya pesan rolling door untuk garasi. Pemasangannya cepat dan hasilnya sangat mulus. Pintunya ringan dioperasikan dan terasa sangat aman saat dikunci.",
   },
   {
     image: "/assets/jendela.png",
@@ -96,7 +103,8 @@ const projects = [
     category: "Kusen, Pintu & Jendela",
     detail:
       "Proyek ini mencakup penggantian total kusen kayu dengan kusen aluminium coating putih. Pemasangan unit pintu dan jendela kaca dilakukan dengan presisi, menggunakan segel karet penuh untuk menjamin kekedapan suara dan mencegah kebocoran air.",
-    testimonial: "Pengerjaan kusen aluminium sangat presisi. Pintu dan jendela terpasang sempurna, berfungsi mulus, dan sangat kedap. Rumah jadi terlihat lebih rapi.",
+    testimonial:
+      "Pengerjaan kusen aluminium sangat presisi. Pintu dan jendela terpasang sempurna, berfungsi mulus, dan sangat kedap. Rumah jadi terlihat lebih rapi.",
   },
   {
     image: "/assets/rumah-2-lantai.png",
@@ -105,7 +113,8 @@ const projects = [
     category: "Bangunan Baru & Renovasi",
     detail:
       "Pengerjaan renovasi total ini mencakup pembongkaran struktur lama dan pembangunan fondasi baru. Fokus utama adalah pada penguatan struktur kolom dan plat lantai untuk mendukung penambahan ruang, diakhiri dengan finishing arsitektural interior dan eksterior yang menyeluruh.",
-    testimonial: "Proses renovasinya sangat terstruktur. Timnya komunikatif dan hasilnya melebihi ekspektasi. Rumah kami terasa seperti baru dan jauh lebih kokoh.t",
+    testimonial:
+      "Proses renovasinya sangat terstruktur. Timnya komunikatif dan hasilnya melebihi ekspektasi. Rumah kami terasa seperti baru dan jauh lebih kokoh.t",
   },
   {
     image: "/assets/kanopi.png",
@@ -114,7 +123,8 @@ const projects = [
     category: "Kanopi",
     detail:
       "Instalasi kanopi carport ini menggunakan rangka baja ringan yang kokoh dengan penutup atap polikarbonat solid untuk meredam panas namun tetap tembus cahaya. Desain rangka disesuaikan untuk integrasi yang rapi dengan talang air tersembunyi.",
-    testimonial: "Instalasi kanopinya sangat profesional. Rangkanya kuat dan atapnya terpasang sempurna tanpa celah. Sekarang carport jadi adem dan aman dari hujan.",
+    testimonial:
+      "Instalasi kanopinya sangat profesional. Rangkanya kuat dan atapnya terpasang sempurna tanpa celah. Sekarang carport jadi adem dan aman dari hujan.",
   },
   {
     image: "/assets/tangga.png",
@@ -123,10 +133,9 @@ const projects = [
     category: "Pagar & Trails",
     detail:
       "Proyek railing tangga modern ini menggunakan kombinasi material stainless steel untuk handrail dan kaca tempered 10mm. Fokus pengerjaan adalah pada instalasi yang presisi dan kokoh, memastikan keamanan optimal tanpa mengorbankan estetika.",
-    testimonial: "Hasil pengerjaan railing tangganya sangat presisi. Sambungannya halus dan yang terpenting sangat kokoh, tidak goyang sama sekali. Aman untuk keluarga.",
+    testimonial:
+      "Hasil pengerjaan railing tangganya sangat presisi. Sambungannya halus dan yang terpenting sangat kokoh, tidak goyang sama sekali. Aman untuk keluarga.",
   },
-
-
 ];
 
 const fadeVariants: Variants = {
@@ -247,12 +256,10 @@ export default function GalleryPage() {
         </AnimatePresence>
       </div>
 
-      {/* Modal Popup */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 flex items-center justify-center z-50 p-4 
-                       bg-black/60 backdrop-blur-md"
+            className="fixed inset-0 flex items-center justify-center z-50 bg-black/60 backdrop-blur-md p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -260,51 +267,63 @@ export default function GalleryPage() {
           >
             <motion.div
               className="bg-white rounded-xl max-w-6xl w-full overflow-hidden shadow-xl 
-                         flex flex-col md:flex-row"
+                   flex flex-col md:flex-row md:h-auto h-[90vh] md:max-h-[85vh]"
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.97 }}
               transition={{ duration: 0.35, ease: "easeInOut" }}
             >
-              {/* Left image */}
-              <div className="md:w-1/2 bg-white p-4 flex items-center justify-center">
-                <div className="overflow-hidden w-full h-full rounded-xl">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover rounded-lg shadow-lg"
-                  />
-                </div>
+              {/* Gambar kiri (desktop) / atas (mobile) */}
+              <div className="relative w-full md:w-1/2 h-[35vh] md:h-auto flex items-center justify-center bg-white">
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  className="w-full h-full object-cover rounded-t-xl md:rounded-none md:rounded-l-xl"
+                />
+
+                {/* Tombol Close: hanya muncul di MOBILE */}
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-3 right-3 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full shadow-sm transition md:hidden"
+                >
+                  <X size={20} />
+                </button>
               </div>
 
-              {/* Right content */}
-              <div className="p-8 md:w-1/2 relative flex flex-col justify-center">
+              {/* Konten kanan (desktop) / bawah (mobile) */}
+              <div
+                className="relative p-8 flex flex-col justify-start w-full md:w-1/2 
+                     overflow-y-auto md:max-h-[85vh] max-h-[55vh]"
+              >
+                {/* Tombol Close: hanya muncul di DESKTOP */}
                 <button
-                  className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
                   onClick={() => setSelectedProject(null)}
+                  className="hidden md:block absolute top-4 right-4 text-gray-500 hover:text-gray-800"
                 >
                   <X size={24} />
                 </button>
 
-                <h2 className="text-3xl font-bold text-[#05677E] mb-1 leading-snug">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#05677E] mb-1 leading-snug">
                   {selectedProject.title}
                 </h2>
-                <p className="text-gray-600 mb-6">{selectedProject.location}</p>
+                <p className="text-gray-600 mb-5 text-sm md:text-base">
+                  {selectedProject.location}
+                </p>
 
                 <div className="mb-6">
-                  <h3 className="bg-[#E5E4FA] text-[#344A52] px-4 py-2 rounded-xl font-semibold inline-block mb-3">
+                  <h3 className="bg-[#E5E4FA] text-[#344A52] px-4 py-2 rounded-xl font-semibold inline-block mb-3 text-sm md:text-base">
                     Detail Pengerjaan
                   </h3>
-                  <p className="text-sm text-gray-700 leading-relaxed">
+                  <p className="text-sm md:text-[15px] text-gray-700 leading-relaxed">
                     {selectedProject.detail}
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="bg-[#E5E4FA] text-[#344A52] px-4 py-2 rounded-xl font-semibold inline-block mb-3">
+                  <h3 className="bg-[#E5E4FA] text-[#344A52] px-4 py-2 rounded-xl font-semibold inline-block mb-3 text-sm md:text-base">
                     Apa kata mereka?
                   </h3>
-                  <p className="text-sm text-gray-700 leading-relaxed">
+                  <p className="text-sm md:text-[15px] text-gray-700 leading-relaxed">
                     {selectedProject.testimonial}
                   </p>
                 </div>
