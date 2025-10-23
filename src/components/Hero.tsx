@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, ChevronDown } from "lucide-react";
-import heroImage from "@/assets/hero-construction.jpg";
+import heroImage from "/assets/hero-construction.jpg";
 import { motion } from "framer-motion";
 
 const Hero = () => {
