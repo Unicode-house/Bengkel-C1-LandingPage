@@ -1,5 +1,5 @@
 "use client";
-import valuesBg from "@/assets/values-bg.jpg";
+import valuesBg from "/assets/values-bg.jpg";
 import { motion, Variants } from "framer-motion";
 
 const companyValues = ["Amanah", "Profesional", "Inovatif", "Tanggung Jawab", "Kualitas"];

@@ -18,7 +18,7 @@ const categories = [
 
 const projects = [
   {
-    image: "/src/assets/Rumah 2 Lt.jpg",
+    image: "/assets/Rumah 2 Lt.jpg",
     title: "Rumah 2 Lt",
     location: "Sawangan, Depok",
     category: "Bangunan Baru & Renovasi",
@@ -27,7 +27,7 @@ const projects = [
       "Proses renovasinya sangat terstruktur. Timnya komunikatif dan hasilnya melebihi ekspektasi. Rumah kami terasa seperti baru dan jauh lebih kokoh.t",
   },
   {
-    image: "/src/assets/pagar.jpg",
+    image: "/assets/pagar.jpg",
     title: "Pagar",
     location: "Ciracas, Jakarta Timur",
     category: "Pagar & Trails",
@@ -36,7 +36,7 @@ const projects = [
     testimonial: "Hasil akhirnya benar-benar memuaskan. Pekerjaannya rapi, detail, dan sangat kokoh. Saya tidak ragu merekomendasikan Mandiri Teknik untuk pekerjaan pintu gerbang.",
   },
   {
-    image: "/src/assets/Kanopi.jpg",
+    image: "/assets/Kanopi.jpg",
     title: "Kanopi",
     location: "Cibubur, Jakarta Timur",
     category: "Kanopi",
@@ -45,7 +45,7 @@ const projects = [
     testimonial: "Kami bersyukur bisa mempunyai kanopi dengan atap yang bagus (Alderon), sehingga tidak jadi penghalang jamaah untuk beribadah ke mesjid karena teras jadi aman dari hujan.",
   },
   {
-    image: "/src/assets/jendela.jpg",
+    image: "/assets/Jendela.jpg",
     title: "Jendela",
     location: "Gading, Jakarta Utara",
     category: "Kusen, Pintu & Jendela",
@@ -54,7 +54,7 @@ const projects = [
     testimonial: "Alhamdulillah... lalu pintu alumunium kamar mandi, jendela rumah sama pondok, semua dikerjakan kang haji ade, hasilnya baik, rapih.",
   },
   {
-    image: "/src/assets/Pagar2.jpg",
+    image: "/assets/Pagar2.jpg",
     title: "Pagar & Tralis",
     location: "Jonggol, Kab Bogor",
     category: "Pagar & Trails",
@@ -63,7 +63,7 @@ const projects = [
     testimonial: "Hasil akhirnya benar-benar memuaskan. Pekerjaannya rapi, detail, dan sangat kokoh. Saya tidak ragu merekomendasikan Mandiri Teknik untuk pekerjaan pintu gerbang.",
   },
   {
-    image: "/src/assets/Custom Metalwork.jpg",
+    image: "/assets/Custom Metalwork.jpg",
     title: "Custom Metalwork",
     location: "Pondok Kelapa, Jakarta Timur",
     category: "Custom Metalwork",
@@ -72,7 +72,7 @@ const projects = [
     testimonial: "...selain karena sudah mengenal sebelumnya, ...tentu saja tidak mengurangi kualitas apapun, sehingga pekerjaan perbesiannya, kami percayakan pada mandiri tehnik.",
   },
   {
-    image: "/src/assets/Pagar3.png",
+    image: "/assets/pagar3.png",
     title: "Cibinong, Kabupaten Bogor",
     location: "Pondok Kelapa, Jakarta Timur",
     category: "Pagar & Trails",
@@ -81,7 +81,7 @@ const projects = [
     testimonial: "Desain pagarnya dibuat persis seperti yang saya inginkan. Hasilnya sangat kokoh dan finishing catnya halus. Rumah jadi terlihat lebih modern dan aman.",
   },
   {
-    image: "/src/assets/rolling door.png",
+    image: "/assets/rolling door.png",
     title: "Rolling Door & Folding Gate",
     location: "Pondok Kelapa, Jakarta Timur",
     category: "Rolling Door & Folding Gate",
@@ -90,7 +90,7 @@ const projects = [
     testimonial: "Saya pesan rolling door untuk garasi. Pemasangannya cepat dan hasilnya sangat mulus. Pintunya ringan dioperasikan dan terasa sangat aman saat dikunci.",
   },
   {
-    image: "/src/assets/jendela.png",
+    image: "/assets/jendela.png",
     title: "Jendela",
     location: "Pondok Indah, Jakarta Selatan",
     category: "Kusen, Pintu & Jendela",
@@ -99,7 +99,7 @@ const projects = [
     testimonial: "Pengerjaan kusen aluminium sangat presisi. Pintu dan jendela terpasang sempurna, berfungsi mulus, dan sangat kedap. Rumah jadi terlihat lebih rapi.",
   },
   {
-    image: "/src/assets/rumah-2-lantai.png",
+    image: "/assets/rumah-2-lantai.png",
     title: "Rumah 2 Lt",
     location: "Bogor Selatan, Kota Bogor",
     category: "Bangunan Baru & Renovasi",
@@ -108,7 +108,7 @@ const projects = [
     testimonial: "Proses renovasinya sangat terstruktur. Timnya komunikatif dan hasilnya melebihi ekspektasi. Rumah kami terasa seperti baru dan jauh lebih kokoh.t",
   },
   {
-    image: "/src/assets/kanopi.png",
+    image: "/assets/kanopi.png",
     title: "Kanopi",
     location: "Sentul City, Kabupaten Bogor",
     category: "Kanopi",
@@ -117,7 +117,7 @@ const projects = [
     testimonial: "Instalasi kanopinya sangat profesional. Rangkanya kuat dan atapnya terpasang sempurna tanpa celah. Sekarang carport jadi adem dan aman dari hujan.",
   },
   {
-    image: "/src/assets/tangga.png",
+    image: "/assets/tangga.png",
     title: "Pagar & Tralis",
     location: "Depok, Jawa Barat",
     category: "Pagar & Trails",

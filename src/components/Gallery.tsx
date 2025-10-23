@@ -9,25 +9,25 @@ import { useNavigate } from "react-router-dom";
 
 const projects = [
   {
-    image: "/src/assets/foto34.jpg",
+    image: "assets/foto34.jpg",
     title: "Pagar Besi Minimalis",
     location: "Bogor",
     description: "Pagar custom dengan desain modern dan elegan",
   },
   {
-    image: "/src/assets/foto41.jpg",
+    image: "assets/foto41.jpg",
     title: "Kanopi Polycarbonate",
     location: "Jakarta",
     description: "Kanopi modern untuk area entrance",
   },
   {
-    image: "/src/assets/foto9.jpg",
+    image: "assets/foto9.jpg",
     title: "Folding Gate Alumunium",
     location: "Depok",
     description: "Pintu lipat untuk toko modern",
   },
   {
-    image: "/src/assets/foto40.jpg",
+    image: "assets/foto40.jpg",
     title: "Renovasi Bangunan Komersial",
     location: "Tangerang",
     description: "Renovasi facade bangunan profesional",
