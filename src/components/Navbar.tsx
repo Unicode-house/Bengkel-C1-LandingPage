@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom"; // ✅ Tambahan penting
 import { Menu, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "./ui/button";
@@ -7,6 +8,9 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("hero");
+
+  const navigate = useNavigate(); // ✅ buat pindah halaman
+  const location = useLocation(); // ✅ buat cek halaman aktif
 
   const menuItems = [
     { label: "Home", id: "hero" },
@@ -19,7 +23,6 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-
     if (location.pathname === "/projects") {
       setActiveSection("gallery");
       return;
@@ -27,11 +30,7 @@ const Navbar = () => {
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
-      // Kalau masih di atas, paksa Home aktif
-      if (window.scrollY < 200) {
-        setActiveSection("hero");
-      }
+      if (window.scrollY < 200) setActiveSection("hero");
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -42,18 +41,11 @@ const Navbar = () => {
       (entries) => {
         let visibleSection = activeSection;
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            visibleSection = entry.target.id;
-          }
+          if (entry.isIntersecting) visibleSection = entry.target.id;
         });
-        if (visibleSection !== activeSection) {
-          setActiveSection(visibleSection);
-        }
+        if (visibleSection !== activeSection) setActiveSection(visibleSection);
       },
-      {
-        rootMargin: "-70px 0px -10% 0px", // lebih aman buat section pendek
-        threshold: 0.1,
-      }
+      { rootMargin: "-70px 0px -10% 0px", threshold: 0.1 }
     );
 
     sections.forEach((section) => {
@@ -66,23 +58,50 @@ const Navbar = () => {
         if (section) observer.unobserve(section);
       });
     };
-  }, [activeSection]);
+  }, [activeSection, location.pathname]);
 
+  // ✅ Fix scroll function — bisa redirect ke home kalau di /projects
   const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== "/") {
+      // Kalau lagi di halaman lain, navigate dulu ke home
+      navigate("/");
+
+      // Simpan target section ke localStorage biar bisa di-handle di home
+      localStorage.setItem("scrollTarget", sectionId);
+      return;
+    }
+
+    // Kalau udah di home, langsung scroll
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80; // tinggi navbar
+      const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-
-      // langsung update active section biar ga delay
       setActiveSection(sectionId);
       setTimeout(() => setActiveSection(sectionId), 400);
-
       setIsMobileMenuOpen(false);
     }
   };
+
+  // ✅ Scroll otomatis pas balik ke home (kalau ada target)
+  useEffect(() => {
+    if (location.pathname === "/") {
+      const target = localStorage.getItem("scrollTarget");
+      if (target) {
+        setTimeout(() => {
+          const element = document.getElementById(target);
+          if (element) {
+            const offset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+          }
+          localStorage.removeItem("scrollTarget");
+        }, 400);
+      }
+    }
+  }, [location.pathname]);
 
   return (
     <nav
@@ -176,7 +195,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {/* Separator */}
       <div className="h-px bg-accent/20"></div>
     </nav>
   );

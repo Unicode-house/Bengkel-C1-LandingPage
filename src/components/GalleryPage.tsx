@@ -259,76 +259,78 @@ export default function GalleryPage() {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 flex items-center justify-center z-50 bg-black/60 backdrop-blur-md p-4"
+            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
-            <motion.div
-              className="bg-white rounded-xl max-w-6xl w-full overflow-hidden shadow-xl 
-                   flex flex-col md:flex-row md:h-auto h-[90vh] md:max-h-[85vh]"
-              initial={{ opacity: 0, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.97 }}
-              transition={{ duration: 0.35, ease: "easeInOut" }}
-            >
-              {/* Gambar kiri (desktop) / atas (mobile) */}
-              <div className="relative w-full md:w-1/2 h-[35vh] md:h-auto flex items-center justify-center bg-white">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover rounded-t-xl md:rounded-none md:rounded-l-xl"
-                />
-
-                {/* Tombol Close: hanya muncul di MOBILE */}
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="absolute top-3 right-3 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full shadow-sm transition md:hidden"
-                >
-                  <X size={20} />
-                </button>
-              </div>
-
-              {/* Konten kanan (desktop) / bawah (mobile) */}
-              <div
-                className="relative p-8 flex flex-col justify-start w-full md:w-1/2 
-                     overflow-y-auto md:max-h-[85vh] max-h-[55vh]"
+            {/* Center modal + responsive padding */}
+            <div className="flex items-center justify-center min-h-screen p-0 md:p-4">
+              <motion.div
+                className="bg-white w-full max-w-7xl shadow-xl flex flex-col md:flex-row rounded-none md:rounded-2xl overflow-hidden"
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
               >
-                {/* Tombol Close: hanya muncul di DESKTOP */}
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="hidden md:block absolute top-4 right-4 text-gray-500 hover:text-gray-800"
-                >
-                  <X size={24} />
-                </button>
+                {/* Gambar kiri (desktop) / atas (mobile) */}
+                <div className="relative w-full md:w-1/2 bg-white md:p-4 flex-shrink-0 flex items-center justify-center">
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover rounded-none md:rounded-xl"
+                  />
 
-                <h2 className="text-2xl md:text-3xl font-bold text-[#05677E] mb-1 leading-snug">
-                  {selectedProject.title}
-                </h2>
-                <p className="text-gray-600 mb-5 text-sm md:text-base">
-                  {selectedProject.location}
-                </p>
-
-                <div className="mb-6">
-                  <h3 className="bg-[#E5E4FA] text-[#344A52] px-4 py-2 rounded-xl font-semibold inline-block mb-3 text-sm md:text-base">
-                    Detail Pengerjaan
-                  </h3>
-                  <p className="text-sm md:text-[15px] text-gray-700 leading-relaxed">
-                    {selectedProject.detail}
-                  </p>
+                  {/* Tombol close hanya di MOBILE */}
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="absolute top-3 right-3 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full shadow-sm md:hidden"
+                  >
+                    <X size={20} />
+                  </button>
                 </div>
 
-                <div>
-                  <h3 className="bg-[#E5E4FA] text-[#344A52] px-4 py-2 rounded-xl font-semibold inline-block mb-3 text-sm md:text-base">
-                    Apa kata mereka?
-                  </h3>
-                  <p className="text-sm md:text-[15px] text-gray-700 leading-relaxed">
-                    {selectedProject.testimonial}
+                {/* Konten kanan (desktop) / bawah (mobile) */}
+                <div className="relative w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+                  {/* Tombol close hanya di DESKTOP */}
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="hidden md:block absolute top-6 right-6 text-gray-500 hover:text-gray-800 transition"
+                  >
+                    <X size={28} />
+                  </button>
+
+                  {/* Title dan lokasi */}
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#05677E] mb-1 leading-snug">
+                    {selectedProject.title}
+                  </h2>
+                  <p className="text-gray-600 mb-6 text-sm md:text-base">
+                    {selectedProject.location}
                   </p>
+
+                  {/* Detail pengerjaan */}
+                  <div className="mb-6">
+                    <h3 className="bg-[#E5E4FA] text-[#344A52] px-4 py-2 rounded-xl font-semibold inline-block mb-3 text-sm md:text-base">
+                      Detail Pengerjaan
+                    </h3>
+                    <p className="text-sm md:text-[15px] text-gray-700 leading-relaxed">
+                      {selectedProject.detail}
+                    </p>
+                  </div>
+
+                  {/* Testimonial */}
+                  <div>
+                    <h3 className="bg-[#E5E4FA] text-[#344A52] px-4 py-2 rounded-xl font-semibold inline-block mb-3 text-sm md:text-base">
+                      Apa kata mereka?
+                    </h3>
+                    <p className="text-sm md:text-[15px] text-gray-700 leading-relaxed">
+                      {selectedProject.testimonial}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
