@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom"; // ✅ Tambahan penting
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useEffect, useRef, memo } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "./ui/button";
@@ -9,8 +11,11 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("hero");
 
-  const navigate = useNavigate(); // ✅ buat pindah halaman
-  const location = useLocation(); // ✅ buat cek halaman aktif
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const activeRef = useRef(activeSection);
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const menuItems = [
     { label: "Home", id: "hero" },
@@ -22,57 +27,75 @@ const Navbar = () => {
     { label: "Kontak", id: "contact" },
   ];
 
+  // 🔁 Update ref biar gak trigger rerender terus
+  useEffect(() => {
+    activeRef.current = activeSection;
+  }, [activeSection]);
+
+  // 🔧 Cache element refs sekali aja
+  useEffect(() => {
+    menuItems.forEach((item) => {
+      sectionRefs.current[item.id] = document.getElementById(item.id);
+    });
+  }, []);
+
+  // 🔥 Handle scroll + intersection observer
   useEffect(() => {
     if (location.pathname === "/projects") {
       setActiveSection("gallery");
       return;
     }
 
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-      if (window.scrollY < 200) setActiveSection("hero");
+    // Optional debounce (buat smooth scroll)
+    const debounce = (func: Function, delay: number) => {
+      let timeout: NodeJS.Timeout;
+      return (...args: any[]) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(...args), delay);
+      };
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = debounce(() => {
+      setIsScrolled(window.scrollY > 20);
+      if (window.scrollY < 200) setActiveSection("hero");
+    }, 100);
 
-    const sections = menuItems.map((item) => document.getElementById(item.id));
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     const observer = new IntersectionObserver(
       (entries) => {
-        let visibleSection = activeSection;
-        entries.forEach((entry) => {
+        let visibleSection = activeRef.current;
+        for (const entry of entries) {
           if (entry.isIntersecting) visibleSection = entry.target.id;
-        });
-        if (visibleSection !== activeSection) setActiveSection(visibleSection);
+        }
+        if (visibleSection !== activeRef.current) {
+          activeRef.current = visibleSection;
+          setActiveSection(visibleSection);
+        }
       },
       { rootMargin: "-70px 0px -10% 0px", threshold: 0.1 }
     );
 
-    sections.forEach((section) => {
+    // Observe tiap section
+    Object.values(sectionRefs.current).forEach((section) => {
       if (section) observer.observe(section);
     });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      sections.forEach((section) => {
-        if (section) observer.unobserve(section);
-      });
+      observer.disconnect();
     };
-  }, [activeSection, location.pathname]);
+  }, [location.pathname]);
 
-  // ✅ Fix scroll function — bisa redirect ke home kalau di /projects
+  // 🚀 Smooth scroll ke section (support navigate dari /projects)
   const scrollToSection = (sectionId: string) => {
     if (location.pathname !== "/") {
-      // Kalau lagi di halaman lain, navigate dulu ke home
       navigate("/");
-
-      // Simpan target section ke localStorage biar bisa di-handle di home
       localStorage.setItem("scrollTarget", sectionId);
       return;
     }
 
-    // Kalau udah di home, langsung scroll
-    const element = document.getElementById(sectionId);
+    const element = sectionRefs.current[sectionId];
     if (element) {
       const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
@@ -84,17 +107,18 @@ const Navbar = () => {
     }
   };
 
-  // ✅ Scroll otomatis pas balik ke home (kalau ada target)
+  // 🧭 Scroll otomatis ke target setelah navigate
   useEffect(() => {
     if (location.pathname === "/") {
       const target = localStorage.getItem("scrollTarget");
       if (target) {
         setTimeout(() => {
-          const element = document.getElementById(target);
+          const element = sectionRefs.current[target];
           if (element) {
             const offset = 80;
             const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - offset;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - offset;
             window.scrollTo({ top: offsetPosition, behavior: "smooth" });
           }
           localStorage.removeItem("scrollTarget");
@@ -126,12 +150,11 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`transition-colors duration-300 relative text-sm font-medium
-                  ${
-                    activeSection === item.id
-                      ? "text-black font-bold after:content-[''] after:block after:w-full after:h-[2px] after:bg-accent after:mt-1"
-                      : "text-[#05677E] hover:text-accent"
-                  }`}
+                className={`transition-colors duration-300 relative text-sm font-medium ${
+                  activeSection === item.id
+                    ? "text-black font-bold after:content-[''] after:block after:w-full after:h-[2px] after:bg-accent after:mt-1"
+                    : "text-[#05677E] hover:text-accent"
+                }`}
               >
                 {item.label}
               </button>
@@ -172,12 +195,11 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`transition-colors duration-300 text-left py-2 font-medium
-                  ${
-                    activeSection === item.id
-                      ? "text-black font-bold underline"
-                      : "text-[#05677E] hover:text-accent"
-                  }`}
+                className={`transition-colors duration-300 text-left py-2 font-medium ${
+                  activeSection === item.id
+                    ? "text-black font-bold underline"
+                    : "text-[#05677E] hover:text-accent"
+                }`}
               >
                 {item.label}
               </button>
@@ -200,4 +222,5 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+// 🚀 React.memo untuk cegah rerender tanpa perubahan props
+export default memo(Navbar);
