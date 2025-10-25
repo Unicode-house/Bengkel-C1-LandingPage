@@ -56,3 +56,4 @@ Project ini di-deploy ke [Vercel](https://vercel.com/) untuk performa dan kemuda
 
 Kalau butuh bantuan atau kerja sama:
 **Email:** [mandiritehnikhade@gmail.com](mailto:mandiritehnikhade@gmail.com)
+  
