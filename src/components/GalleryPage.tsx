@@ -78,7 +78,7 @@ const projects = [
   },
   {
     image: "/assets/pagar3.png",
-    title: "Cibinong, Kabupaten Bogor",
+    title: "Pagar rumah",
     location: "Pondok Kelapa, Jakarta Timur",
     category: "Pagar & Trails",
     detail:
@@ -128,7 +128,7 @@ const projects = [
   },
   {
     image: "/assets/tangga.png",
-    title: "Pagar & Tralis",
+    title: "Tangga",
     location: "Depok, Jawa Barat",
     category: "Pagar & Trails",
     detail:
