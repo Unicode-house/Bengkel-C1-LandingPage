@@ -4,7 +4,6 @@ import { MapPin, Phone, Mail, Youtube, Instagram } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
 
-// 🧱 Static Data (biar gak recreate tiap render)
 const contactInfo = [
   {
     icon: MapPin,
@@ -31,39 +30,38 @@ const socialMedia = [
   { icon: Instagram, name: "Instagram", link: "#" },
 ];
 
-// ⚙️ Animation Variants (GPU friendly)
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 15 },
+  hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.12, duration: 0.4, ease: "easeOut" },
+    transition: { delay: i * 0.15, duration: 0.5, ease: "easeOut" },
   }),
 };
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+    <section id="contact" className="py-20 bg-muted/30 bg-white">
       <div className="container mx-auto px-4">
         <LazyMotion features={domAnimation}>
           {/* 🧠 Heading */}
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
               Kontak Kami
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Hubungi kami untuk konsultasi atau kerja sama proyek
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Hubungi kami untuk konsultasi gratis
             </p>
           </motion.div>
 
-          {/* ⚡ Grid */}
-          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+          {/* ⚡ Grid Layout */}
+          <div className="grid md:grid-cols-2 gap-12">
             {/* 🧭 Contact Info */}
             <div className="space-y-8">
               {contactInfo.map((info, index) => (
@@ -76,7 +74,7 @@ const Contact = () => {
                   viewport={{ once: true }}
                   custom={index}
                 >
-                  <div className="bg-primary/10 p-3 rounded-xl flex-shrink-0">
+                  <div className="bg-primary/10 p-3 rounded-lg flex-shrink-0">
                     <info.icon className="h-6 w-6 text-primary" />
                   </div>
                   <div>
@@ -86,7 +84,7 @@ const Contact = () => {
                     {info.link ? (
                       <a
                         href={info.link}
-                        className="text-muted-foreground hover:text-accent transition-colors duration-300"
+                        className="text-muted-foreground hover:text-accent transition-colors"
                       >
                         {info.content}
                       </a>
@@ -102,7 +100,7 @@ const Contact = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <h3 className="font-semibold text-lg mb-4 text-card-foreground">
                   Media Sosial
@@ -114,9 +112,9 @@ const Contact = () => {
                       href={social.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="bg-primary/10 p-3 rounded-lg"
                       aria-label={social.name}
-                      className="bg-primary/10 p-3 rounded-xl transition-colors hover:bg-primary/20"
-                      whileHover={{ scale: 1.08 }}
+                      whileHover={{ scale: 1.1, rotate: 2 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <social.icon className="h-6 w-6 text-primary" />
@@ -128,19 +126,22 @@ const Contact = () => {
 
             {/* 🗺️ Map Section */}
             <motion.div
-              className="h-[380px] rounded-2xl overflow-hidden shadow-lg border border-gray-100"
-              initial={{ opacity: 0, scale: 0.96 }}
+              className="h-[400px] rounded-xl overflow-hidden shadow-card"
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347862248!2d106.68942834335936!3d-6.594509999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c5d2e602b501%3A0x25a12f0f97fac4ee!2sBogor%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1234567890"
-                loading="lazy"
-                title="Lokasi Mandiri Tehnik Hade"
-                referrerPolicy="no-referrer-when-downgrade"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
                 allowFullScreen
-                className="w-full h-full border-none will-change-transform"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Lokasi Mandiri Tehnik Hade"
+                className="will-change-transform"
               ></iframe>
             </motion.div>
           </div>
