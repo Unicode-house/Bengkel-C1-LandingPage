@@ -1,29 +1,91 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mandiri Tehnik Hade - Solusi Konstruksi & Pengelasan Terpercaya</title>
-    <meta name="description" content="Berkualitas, Amanah, dan Profesional dalam setiap proyek konstruksi dan pengelasan sejak 2009. Layanan pagar besi, renovasi, kanopi, dan folding gate." />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>
+      Mandiri Tehnik Hade - Solusi Konstruksi & Pengelasan Terpercaya Sejak 2009
+    </title>
+
+    <!-- ✅ SEO & Meta -->
+    <meta
+      name="description"
+      content="Berkualitas, Amanah, dan Profesional dalam setiap proyek konstruksi dan pengelasan sejak 2009. Layanan pagar besi, renovasi, kanopi, dan folding gate."
+    />
     <meta name="author" content="Mandiri Tehnik Hade" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <meta property="og:title" content="Mandiri Tehnik Hade - Solusi Konstruksi & Pengelasan Terpercaya" />
-    <meta property="og:description" content="Berkualitas, Amanah, dan Profesional dalam setiap proyek konstruksi dan pengelasan sejak 2009." />
+    <!-- ✅ Open Graph / Social -->
+    <meta
+      property="og:title"
+      content="Mandiri Tehnik Hade - Solusi Konstruksi & Pengelasan Terpercaya"
+    />
+    <meta
+      property="og:description"
+      content="Berkualitas, Amanah, dan Profesional dalam setiap proyek konstruksi dan pengelasan sejak 2009."
+    />
     <meta property="og:type" content="website" />
-
-
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mandiri Tehnik Hade - Solusi Konstruksi & Pengelasan Terpercaya" />
-    <meta name="twitter:description" content="Berkualitas, Amanah, dan Profesional dalam setiap proyek konstruksi dan pengelasan sejak 2009." />
-     <link rel="preload" as="image" href="/assets/hero-construction.webp" />
+    <meta
+      name="twitter:title"
+      content="Mandiri Tehnik Hade - Solusi Konstruksi & Pengelasan Terpercaya"
+    />
+    <meta
+      name="twitter:description"
+      content="Berkualitas, Amanah, dan Profesional dalam setiap proyek konstruksi dan pengelasan sejak 2009."
+    />
 
+    <!-- ✅ Critical Preloads (buat percepat render pertama) -->
+    <link rel="preload" as="image" href="/assets/hero-construction.webp" />
+    <link rel="preload" as="style" href="/assets/index-qlCedMKY.css" />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- ✅ Non-blocking Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- ✅ Non-blocking CSS -->
+    <link
+      rel="stylesheet"
+      href="/assets/index-qlCedMKY.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript><link rel="stylesheet" href="/assets/index-qlCedMKY.css" /></noscript>
+
+    <!-- ✅ Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- ✅ Performance Hints -->
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
+    <!-- ✅ Preconnect untuk CDN (kalau pakai Vercel / asset lain) -->
+    <link rel="preconnect" href="https://vercel.app" crossorigin />
   </head>
 
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- ✅ Main JS (module defer biar gak block render) -->
+    <script type="module" src="/src/main.tsx" defer></script>
   </body>
 </html>
