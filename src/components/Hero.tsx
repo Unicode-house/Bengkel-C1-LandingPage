@@ -5,7 +5,7 @@ import { MessageCircle, ChevronDown } from "lucide-react";
 import { motion, LazyMotion, domAnimation } from "framer-motion";
 
 // ⚡ Pakai import statis di bawah buat lazy-load gambar besar
-const heroImage = "/assets/hero-construction.jpg";
+const heroImage = "/assets/hero-construction.webp";
 
 const Hero = () => {
   const whatsappNumber = "6285156276912";
