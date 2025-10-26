@@ -1,5 +1,6 @@
 "use client";
-import { memo } from "react";
+
+import { memo, useMemo } from "react";
 import {
   DoorOpen,
   Home,
@@ -10,9 +11,15 @@ import {
   PanelsTopLeft,
   Settings,
 } from "lucide-react";
-import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
+import {
+  motion,
+  Variants,
+  LazyMotion,
+  domAnimation,
+  useReducedMotion,
+} from "framer-motion";
 
-// 🧱 Static data di luar komponen → biar gak re-create tiap render
+/* 🧱 Static data tetap di luar komponen */
 const services = [
   {
     icon: Home,
@@ -64,39 +71,75 @@ const services = [
   },
 ];
 
-// ⚙️ Variants animasi (lebih ringan & smooth)
+/* ⚙️ Variants animasi – simple, tapi efisien */
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
+      staggerChildren: 0.12,
+      delayChildren: 0.08,
       ease: "easeOut",
     },
   },
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 
 const Services = () => {
+  const prefersReducedMotion = useReducedMotion();
+
+  /* 🧠 Memoize grid items biar gak re-render */
+  const serviceCards = useMemo(
+    () =>
+      services.map((service) => (
+        <motion.div
+          key={service.title}
+          className="bg-[#CFE6F0] p-8 rounded-xl shadow-card 
+                     hover:shadow-xl transition-all duration-300 ease-out 
+                     hover:-translate-y-2 group cursor-pointer will-change-transform"
+          variants={cardVariants}
+        >
+          <div
+            className="bg-[#B6EBFF] w-16 h-16 rounded-2xl flex items-center 
+                       justify-center mb-6 transition-colors duration-300 
+                       group-hover:bg-[#003543]"
+          >
+            <service.icon
+              className="h-8 w-8 text-primary transition-colors duration-300 
+                         group-hover:text-white"
+            />
+          </div>
+          <h3 className="font-semibold text-xl mb-3 text-card-foreground">
+            {service.title}
+          </h3>
+          <p className="text-muted-foreground leading-relaxed">
+            {service.description}
+          </p>
+        </motion.div>
+      )),
+    []
+  );
+
   return (
-    <section id="services" className="py-20 bg-muted/30">
+    <section
+      id="services"
+      className="py-20 bg-muted/30 scroll-mt-20 will-change-transform"
+    >
       <div className="container mx-auto px-4">
-        {/* ✅ LazyMotion biar FramerMotion load ringan */}
         <LazyMotion features={domAnimation}>
-          {/* Header */}
+          {/* ✅ Header */}
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -105,42 +148,19 @@ const Services = () => {
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-[#05677E]">
               Dari desain hingga instalasi, kami tawarkan solusi lengkap untuk
-              kebutuhan konstruksi dan pengelasan Anda
+              kebutuhan konstruksi dan pengelasan Anda.
             </p>
           </motion.div>
 
-          {/* Grid Services */}
+          {/* ✅ Grid Services */}
           <motion.div
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12"
-            variants={containerVariants}
+            variants={prefersReducedMotion ? undefined : containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
-            {services.map((service) => (
-              <motion.div
-                key={service.title}
-                className="bg-[#CFE6F0] p-8 rounded-xl shadow-card 
-                           hover:shadow-xl transition-all duration-300 ease-out 
-                           hover:-translate-y-2 group cursor-pointer"
-                variants={cardVariants}
-              >
-                <div
-                  className="bg-[#B6EBFF] w-16 h-16 rounded-2xl flex items-center 
-                             justify-center mb-6 transition-colors duration-300 
-                             group-hover:bg-[#003543]"
-                >
-                  <service.icon
-                    className="h-8 w-8 text-primary transition-colors duration-300 
-                               group-hover:text-white"
-                  />
-                </div>
-                <h3 className="font-semibold text-xl mb-3 text-card-foreground">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground">{service.description}</p>
-              </motion.div>
-            ))}
+            {serviceCards}
           </motion.div>
         </LazyMotion>
       </div>
