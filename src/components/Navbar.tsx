@@ -1,5 +1,6 @@
-"use client";
-import { useState, useEffect, useRef, useCallback, memo } from "react";
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useEffect, useRef, memo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
@@ -15,7 +16,6 @@ const Navbar = () => {
 
   const activeRef = useRef(activeSection);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
-  const ticking = useRef(false); // ⏱️ prevent scroll handler spam
 
   const menuItems = [
     { label: "Home", id: "hero" },
@@ -27,53 +27,59 @@ const Navbar = () => {
     { label: "Kontak", id: "contact" },
   ];
 
-  // 🧠 keep refs synced
+  // 🔁 Update ref biar gak trigger rerender terus
   useEffect(() => {
     activeRef.current = activeSection;
   }, [activeSection]);
 
-  // 📦 cache section refs
+  // 🔧 Cache element refs sekali aja
   useEffect(() => {
     menuItems.forEach((item) => {
       sectionRefs.current[item.id] = document.getElementById(item.id);
     });
   }, []);
 
-  // ⚙️ optimized scroll + intersection observer
+  // 🔥 Handle scroll + intersection observer
   useEffect(() => {
     if (location.pathname === "/projects") {
       setActiveSection("gallery");
       return;
     }
 
-    const handleScroll = () => {
-      if (!ticking.current) {
-        window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 20);
-          if (window.scrollY < 200) setActiveSection("hero");
-          ticking.current = false;
-        });
-        ticking.current = true;
-      }
+    // Optional debounce (buat smooth scroll)
+    const debounce = (func: Function, delay: number) => {
+      let timeout: NodeJS.Timeout;
+      return (...args: any[]) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(...args), delay);
+      };
     };
+
+    const handleScroll = debounce(() => {
+      setIsScrolled(window.scrollY > 20);
+      if (window.scrollY < 200) setActiveSection("hero");
+    }, 100);
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     const observer = new IntersectionObserver(
       (entries) => {
-        let visible = activeRef.current;
+        let visibleSection = activeRef.current;
         for (const entry of entries) {
-          if (entry.isIntersecting) visible = entry.target.id;
+          if (entry.isIntersecting) visibleSection = entry.target.id;
         }
-        if (visible !== activeRef.current) {
-          activeRef.current = visible;
-          setActiveSection(visible);
+        if (visibleSection !== activeRef.current) {
+          activeRef.current = visibleSection;
+          setActiveSection(visibleSection);
         }
       },
-      { rootMargin: "-60px 0px -10% 0px", threshold: 0.15 }
+      { rootMargin: "-70px 0px -10% 0px", threshold: 0.1 }
     );
 
-    Object.values(sectionRefs.current).forEach((el) => el && observer.observe(el));
+    // Observe tiap section
+    Object.values(sectionRefs.current).forEach((section) => {
+      if (section) observer.observe(section);
+    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -81,41 +87,42 @@ const Navbar = () => {
     };
   }, [location.pathname]);
 
-  // 🧭 smooth scroll + mobile optimization
-  const scrollToSection = useCallback(
-    (id: string) => {
-      if (location.pathname !== "/") {
-        navigate("/");
-        localStorage.setItem("scrollTarget", id);
-        return;
-      }
+  // 🚀 Smooth scroll ke section (support navigate dari /projects)
+  const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      localStorage.setItem("scrollTarget", sectionId);
+      return;
+    }
 
-      const element = sectionRefs.current[id];
-      if (element) {
-        const offset = 80;
-        const position = element.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top: position, behavior: "smooth" });
-        setActiveSection(id);
-        setIsMobileMenuOpen(false);
-      }
-    },
-    [location.pathname, navigate]
-  );
+    const element = sectionRefs.current[sectionId];
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      setActiveSection(sectionId);
+      setTimeout(() => setActiveSection(sectionId), 400);
+      setIsMobileMenuOpen(false);
+    }
+  };
 
-  // 🎯 scroll after navigation
+  // 🧭 Scroll otomatis ke target setelah navigate
   useEffect(() => {
     if (location.pathname === "/") {
       const target = localStorage.getItem("scrollTarget");
       if (target) {
         setTimeout(() => {
-          const el = sectionRefs.current[target];
-          if (el) {
+          const element = sectionRefs.current[target];
+          if (element) {
             const offset = 80;
-            const pos = el.getBoundingClientRect().top + window.scrollY - offset;
-            window.scrollTo({ top: pos, behavior: "smooth" });
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - offset;
+            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
           }
           localStorage.removeItem("scrollTarget");
-        }, 350);
+        }, 400);
       }
     }
   }, [location.pathname]);
@@ -128,7 +135,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* 🧱 Logo */}
+          {/* Logo */}
           <div
             className={`font-bold text-[#05677E] transition-all duration-300 ${
               isScrolled ? "text-xl" : "text-2xl"
@@ -137,7 +144,7 @@ const Navbar = () => {
             <span className="text-[#5A5C7E]">MTH</span> Mandiri Tehnik Hade
           </div>
 
-          {/* 💻 Desktop Menu */}
+          {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item) => (
               <button
@@ -154,11 +161,13 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* 📞 Desktop CTA */}
+          {/* CTA Button - Desktop */}
           <div className="hidden lg:block">
             <Button
               variant="hero"
-              onClick={() => window.open("https://wa.me/6281234567890", "_blank")}
+              onClick={() =>
+                window.open("https://wa.me/6281234567890", "_blank")
+              }
               className="flex items-center gap-2 rounded-xl text-white bg-[#344A52] hover:bg-[#05677E] transition-colors duration-300"
             >
               <FaWhatsapp className="text-lg text-white" />
@@ -166,28 +175,27 @@ const Navbar = () => {
             </Button>
           </div>
 
-          {/* 📱 Mobile Button */}
+          {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-[#05677E] focus:outline-none will-change-transform"
-            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className="lg:hidden p-2 text-[#05677E]"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
-        {/* 📲 Mobile Menu */}
+        {/* Mobile Menu */}
         <div
-          className={`lg:hidden transform transition-transform duration-300 ease-out origin-top ${
-            isMobileMenuOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
+          className={`lg:hidden overflow-hidden transition-all duration-300 ${
+            isMobileMenuOpen ? "max-h-screen pb-6" : "max-h-0"
           }`}
-          style={{ willChange: "transform, opacity" }}
         >
-          <div className="flex flex-col space-y-4 pt-4 border-t border-gray-200 pb-6">
+          <div className="flex flex-col space-y-4 pt-4 border-t border-gray-200">
             {menuItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`text-left py-2 font-medium transition-colors duration-200 ${
+                className={`transition-colors duration-300 text-left py-2 font-medium ${
                   activeSection === item.id
                     ? "text-black font-bold underline"
                     : "text-[#05677E] hover:text-accent"
@@ -198,7 +206,9 @@ const Navbar = () => {
             ))}
             <Button
               variant="hero"
-              onClick={() => window.open("https://wa.me/6281234567890", "_blank")}
+              onClick={() =>
+                window.open("https://wa.me/6281234567890", "_blank")
+              }
               className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#05677E] text-white hover:bg-[#344A52]"
             >
               <FaWhatsapp className="text-lg text-white" />
@@ -212,4 +222,5 @@ const Navbar = () => {
   );
 };
 
+// 🚀 React.memo untuk cegah rerender tanpa perubahan props
 export default memo(Navbar);

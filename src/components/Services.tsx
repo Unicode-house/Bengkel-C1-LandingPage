@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
 
-// 🧱 Static data di luar komponen (hemat re-render)
+// 🧱 Static data di luar komponen → biar gak re-create tiap render
 const services = [
   {
     icon: Home,
@@ -64,36 +64,33 @@ const services = [
   },
 ];
 
-// ⚙️ Variants ringan dan efisien (framerate stabil)
+// ⚙️ Variants animasi (lebih ringan & smooth)
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.08,
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
       ease: "easeOut",
     },
   },
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 25 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, ease: "easeOut" },
+    transition: { duration: 0.6, ease: "easeOut" },
   },
 };
 
 const Services = () => {
   return (
-    <section
-      id="services"
-      className="py-20 bg-[#F9FBFC] overflow-hidden will-change-transform"
-    >
+    <section id="services" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        {/* ✅ LazyMotion buat load animasi lebih hemat */}
+        {/* ✅ LazyMotion biar FramerMotion load ringan */}
         <LazyMotion features={domAnimation}>
           {/* Header */}
           <motion.div
@@ -106,7 +103,7 @@ const Services = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
               Layanan Kami
             </h2>
-            <p className="text-base md:text-xl text-[#05677E] max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-[#05677E]">
               Dari desain hingga instalasi, kami tawarkan solusi lengkap untuk
               kebutuhan konstruksi dan pengelasan Anda
             </p>
@@ -114,36 +111,34 @@ const Services = () => {
 
           {/* Grid Services */}
           <motion.div
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             {services.map((service) => (
               <motion.div
                 key={service.title}
-                className="bg-[#CFE6F0] p-6 md:p-8 rounded-xl shadow-card hover-lift 
-                           transition-transform duration-300 group cursor-pointer 
-                           will-change-transform"
+                className="bg-[#CFE6F0] p-8 rounded-xl shadow-card 
+                           hover:shadow-xl transition-all duration-300 ease-out 
+                           hover:-translate-y-2 group cursor-pointer"
                 variants={cardVariants}
               >
                 <div
-                  className="bg-[#B6EBFF] w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center 
-                             justify-center mb-5 md:mb-6 transition-colors duration-300 
+                  className="bg-[#B6EBFF] w-16 h-16 rounded-2xl flex items-center 
+                             justify-center mb-6 transition-colors duration-300 
                              group-hover:bg-[#003543]"
                 >
                   <service.icon
-                    className="h-7 w-7 md:h-8 md:w-8 text-primary transition-colors duration-300 
+                    className="h-8 w-8 text-primary transition-colors duration-300 
                                group-hover:text-white"
                   />
                 </div>
-                <h3 className="font-semibold text-lg md:text-xl mb-2 text-card-foreground">
+                <h3 className="font-semibold text-xl mb-3 text-card-foreground">
                   {service.title}
                 </h3>
-                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
+                <p className="text-muted-foreground">{service.description}</p>
               </motion.div>
             ))}
           </motion.div>
