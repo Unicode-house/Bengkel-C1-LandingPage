@@ -23,11 +23,11 @@ const contacts = [
 
 // ⚙️ Animation Variants
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 25 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" },
+    transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
   }),
 };
 
@@ -44,12 +44,13 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-white border-t border-gray-200">
+    <footer className="bg-gradient-to-b from-white to-gray-50 border-t border-gray-200">
       <LazyMotion features={domAnimation}>
-        <div className="container mx-auto px-4 py-16 grid md:grid-cols-3 gap-12">
-          {/* 🧩 Brand Info */}
+        {/* 🌐 Top Section */}
+        <div className="container mx-auto px-4 py-16 grid gap-10 md:grid-cols-3">
+          {/* 🧱 Brand Info */}
           <motion.div
-            className="space-y-4 text-gray-700"
+            className="space-y-5 text-gray-700"
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
@@ -57,13 +58,14 @@ const Footer = () => {
             custom={0}
           >
             <div className="flex items-center gap-3">
-              <div className="bg-white p-3 rounded-full flex items-center justify-center shadow-sm">
+              <div className="bg-white p-3 rounded-full shadow-md flex items-center justify-center">
                 <img
                   src={engineeringImg}
                   alt="Mandiri Teknik Hade Logo"
                   loading="lazy"
                   decoding="async"
                   className="h-11 w-11 object-contain"
+                  onContextMenu={(e) => e.preventDefault()}
                 />
               </div>
               <h3 className="text-xl font-bold text-[#05677E] leading-tight">
@@ -71,7 +73,7 @@ const Footer = () => {
               </h3>
             </div>
 
-            <p className="text-sm text-gray-600 leading-relaxed">
+            <p className="text-sm leading-relaxed text-gray-600 max-w-md">
               Sejak 2009, kami telah melayani ribuan klien dengan dedikasi penuh.
               Dari proyek rumah tinggal hingga bangunan komersial, kami hadir
               sebagai mitra terpercaya Anda dalam mewujudkan konstruksi
@@ -79,7 +81,7 @@ const Footer = () => {
             </p>
           </motion.div>
 
-          {/* 🧭 Menu */}
+          {/* 🧭 Navigation Menu */}
           <motion.div
             className="space-y-4"
             variants={fadeUp}
@@ -94,7 +96,7 @@ const Footer = () => {
                 <li key={item.id}>
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className="hover:text-[#05677E] transition-colors"
+                    className="hover:text-[#05677E] transition-colors duration-200"
                   >
                     {item.label}
                   </button>
@@ -103,7 +105,7 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* 📞 Contact */}
+          {/* 📞 Contact Info */}
           <motion.div
             className="space-y-4"
             variants={fadeUp}
@@ -120,7 +122,7 @@ const Footer = () => {
                   {item.link ? (
                     <a
                       href={item.link}
-                      className="hover:text-[#05677E] transition-colors"
+                      className="hover:text-[#05677E] transition-colors duration-200"
                     >
                       {item.text}
                     </a>
@@ -133,21 +135,22 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* ⚡ Bottom Bar */}
         <motion.div
           className="bg-[#05677E] text-white text-sm"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className="container mx-auto px-4 py-4 text-center space-y-2">
-            <div className="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4">
+          <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left">
+            <div className="space-y-1 md:space-y-0 md:flex md:items-center md:gap-3">
               <p>© {currentYear} Mandiri Tehnik Hade</p>
               <span className="hidden md:inline">|</span>
               <p>Dibuat oleh MTH Team</p>
             </div>
-            <div className="flex justify-center items-center gap-4">
+
+            <div className="flex items-center justify-center gap-3 text-white/90">
               <a href="#" className="hover:underline">
                 Legalitas
               </a>

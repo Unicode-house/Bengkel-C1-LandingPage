@@ -14,7 +14,7 @@ const WhatsAppButton = () => {
       onClick={handleClick}
       size="icon"
       variant="hero"
-      className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-xl hover:scale-110 transition-transform bg-gray-700"
+      className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-xl hover:bg-gray-600 bg-gray-700"
       aria-label="Chat via WhatsApp"
     >
       <MessageCircle className="h-6 w-6 text-white" />

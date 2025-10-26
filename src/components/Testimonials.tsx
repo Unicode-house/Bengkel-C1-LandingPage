@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
 
-// 🧱 Static data di luar komponen biar gak re-create tiap render
+// 🧱 Static data (biar gak re-create tiap render)
 const testimonials = [
   {
     name: "Bpk. H. Eko Santoso",
@@ -50,76 +50,78 @@ const testimonials = [
   },
 ];
 
-// 🎬 Motion Variants ringan
+// 🎬 Variants animasi ringan (GPU friendly)
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 25 },
+  hidden: { opacity: 0, y: 20, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 
 const Testimonials = () => {
   return (
-    <section id="testimonials" className="py-20 bg-muted/30 bg-white">
+    <section id="testimonials" className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
         <LazyMotion features={domAnimation}>
-          {/* Header */}
+          {/* 🧠 Header */}
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-14"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold mb-3 text-primary">
               Testimoni Klien
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               Kepercayaan klien adalah prioritas kami
             </p>
           </motion.div>
 
-          {/* Carousel */}
+          {/* 💬 Carousel */}
           <Carousel
             opts={{
               align: "start",
               loop: true,
             }}
-            className="w-full max-w-5xl mx-auto"
+            className="w-full max-w-5xl mx-auto select-none"
           >
             <CarouselContent>
-              {testimonials.map((testimonial) => (
+              {testimonials.map((testimonial, index) => (
                 <CarouselItem
                   key={testimonial.name}
-                  className="md:basis-1/2 lg:basis-1/3 rounded-xl"
+                  className="md:basis-1/2 lg:basis-1/3 px-2"
                 >
                   <motion.div
                     variants={cardVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    custom={index}
                   >
-                    <Card className="h-full shadow-card hover-lift rounded-xl focus:outline-none focus:ring-0">
-                      <CardContent className="p-6 flex flex-col h-full bg-[#F5FAFD] rounded-xl">
+                    <Card className="h-full rounded-2xl shadow-card hover:shadow-lg transition-all duration-300 bg-[#F5FAFD] hover:-translate-y-1">
+                      <CardContent className="p-6 flex flex-col h-full">
                         {/* ⭐ Rating */}
-                        <div className="flex gap-1 mb-4">
+                        <div className="flex gap-1 mb-3">
                           {Array.from({ length: testimonial.rating }).map((_, i) => (
                             <Star
                               key={i}
-                              className="h-5 w-5 fill-yellow-400 text-yellow-400"
+                              className="h-5 w-5 fill-yellow-400 text-yellow-400 drop-shadow-sm"
                             />
                           ))}
                         </div>
 
                         {/* 💬 Comment */}
-                        <p className="text-muted-foreground mb-6 flex-grow italic leading-relaxed">
+                        <p className="text-muted-foreground mb-5 italic flex-grow leading-relaxed text-[15px]">
                           “{testimonial.comment}”
                         </p>
 
                         {/* 👤 Author */}
-                        <div>
+                        <div className="border-t border-gray-200 pt-3">
                           <p className="font-semibold text-card-foreground">
                             {testimonial.name}
                           </p>
@@ -134,9 +136,9 @@ const Testimonials = () => {
               ))}
             </CarouselContent>
 
-            {/* Controls */}
-            <CarouselPrevious className="focus:outline-none focus:ring-0" />
-            <CarouselNext className="focus:outline-none focus:ring-0" />
+            {/* 🧭 Controls */}
+            <CarouselPrevious className="hidden md:flex focus:outline-none focus:ring-0 hover:scale-110 transition-transform" />
+            <CarouselNext className="hidden md:flex focus:outline-none focus:ring-0 hover:scale-110 transition-transform" />
           </Carousel>
         </LazyMotion>
       </div>
