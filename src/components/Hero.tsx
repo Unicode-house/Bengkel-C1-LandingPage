@@ -6,7 +6,7 @@ import { MessageCircle, ChevronDown } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 /* ✅ Gunakan WebP (lebih ringan) + prefetch preload di Head (Next.js) */
-const heroImage = "/assets/hero-construction.webp";
+const heroImage = "/assets/hero-construction.jpg";
 
 const Hero = () => {
   const prefersReducedMotion = useReducedMotion();
