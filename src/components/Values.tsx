@@ -1,43 +1,67 @@
 "use client";
-import { memo } from "react";
-import valuesBg from "/assets/values-bg.jpg";
-import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
 
-// 🧱 Static values di luar komponen biar gak re-create tiap render
+import { memo, useMemo } from "react";
+import { motion, Variants, LazyMotion, domAnimation, useReducedMotion } from "framer-motion";
+import valuesBg from "/assets/values-bg.jpg";
+
+/* 🧱 Static data di luar komponen */
 const companyValues = ["Amanah", "Profesional", "Inovatif", "Tanggung Jawab", "Kualitas"];
 
-// ⚙️ Variants reusable, ringan, dan GPU-friendly
+/* ⚙️ Animasi list item – simple, ringan, GPU-friendly */
 const listVariants: Variants = {
   hidden: { opacity: 0, x: -15 },
   visible: (i: number) => ({
     opacity: 1,
     x: 0,
-    transition: { delay: i * 0.15, duration: 0.4, ease: "easeOut" },
+    transition: { delay: i * 0.12, duration: 0.35, ease: "easeOut" },
   }),
 };
 
 const Values = () => {
-  return (
-    <section className="py-20 relative overflow-hidden">
-      <LazyMotion features={domAnimation}>
-        {/* 🖼️ Background Image with animation */}
+  const prefersReducedMotion = useReducedMotion();
+
+  /* 🧠 Memoize list biar gak re-create tiap render */
+  const renderedValues = useMemo(
+    () =>
+      companyValues.map((value, index) => (
         <motion.div
-          className="absolute inset-0 will-change-transform"
+          key={value}
+          className="flex items-center gap-4"
+          variants={listVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          custom={index}
+        >
+          <div className="w-2 h-2 bg-accent rounded-full" />
+          <span className="text-lg font-medium">{value}</span>
+        </motion.div>
+      )),
+    []
+  );
+
+  return (
+    <section className="py-20 relative overflow-hidden bg-black text-white">
+      <LazyMotion features={domAnimation}>
+        {/* 🖼️ Background Image */}
+        <motion.div
+          className="absolute inset-0 will-change-transform transform-gpu"
           style={{
             backgroundImage: `url(${valuesBg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
           onContextMenu={(e) => e.preventDefault()}
-          initial={{ scale: 1.05 }}
-          whileInView={{ scale: 1 }}
+          initial={prefersReducedMotion ? false : { scale: 1.05 }}
+          whileInView={prefersReducedMotion ? {} : { scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true }}
         >
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
         </motion.div>
 
-        {/* ✅ Preload hidden image for LCP optimization */}
+        {/* ✅ Hidden preload for LCP improvement */}
+        <link rel="preload" as="image" href={valuesBg} />
         <img
           src={valuesBg}
           alt="Background Values"
@@ -51,43 +75,36 @@ const Values = () => {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* 🧩 Left content */}
-            <div className="text-white space-y-6">
+            {/* 🧩 Left Content */}
+            <div className="space-y-6">
               <motion.h2
-                className="text-4xl md:text-5xl font-bold mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                className="text-4xl md:text-5xl font-bold mb-6 text-accent"
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
                 Nilai & Filosofi
               </motion.h2>
 
-              <div className="space-y-4">
-                {companyValues.map((value, index) => (
-                  <motion.div
-                    key={value}
-                    className="flex items-center gap-4"
-                    variants={listVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                    custom={index}
-                  >
-                    <div className="w-2 h-2 bg-accent rounded-full" />
-                    <span className="text-lg font-medium">{value}</span>
-                  </motion.div>
-                ))}
-              </div>
+              <motion.div
+                className="space-y-4"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {renderedValues}
+              </motion.div>
             </div>
 
-            {/* 🧠 Quote box */}
+            {/* 🧠 Quote Box */}
             <motion.div
-              className="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-white/20 shadow-lg"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              className="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-white/20 shadow-lg 
+                         transform-gpu will-change-transform"
+              initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.95 }}
+              whileInView={prefersReducedMotion ? {} : { opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
             >
               <blockquote className="text-white">
                 <p className="text-xl md:text-2xl font-light leading-relaxed italic mb-4">

@@ -1,5 +1,6 @@
 "use client";
-import { memo } from "react";
+
+import { memo, useMemo } from "react";
 import { Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -9,9 +10,15 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
+import {
+  motion,
+  Variants,
+  LazyMotion,
+  domAnimation,
+  useReducedMotion,
+} from "framer-motion";
 
-// 🧱 Static data (biar gak re-create tiap render)
+/* 🧱 Static data di luar komponen biar gak re-create tiap render */
 const testimonials = [
   {
     name: "Bpk. H. Eko Santoso",
@@ -50,9 +57,9 @@ const testimonials = [
   },
 ];
 
-// 🎬 Variants animasi ringan (GPU friendly)
+/* 🎬 GPU-friendly variants */
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 20, scale: 0.98 },
+  hidden: { opacity: 0, y: 20, scale: 0.97 },
   visible: {
     opacity: 1,
     y: 0,
@@ -62,15 +69,66 @@ const cardVariants: Variants = {
 };
 
 const Testimonials = () => {
+  const prefersReducedMotion = useReducedMotion();
+
+  /* 🧠 Memoize cards biar gak re-render */
+  const testimonialCards = useMemo(
+    () =>
+      testimonials.map((t, index) => (
+        <CarouselItem
+          key={t.name}
+          className="md:basis-1/2 lg:basis-1/3 px-2 select-none"
+        >
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            custom={index}
+          >
+            <Card className="h-full rounded-2xl shadow-card hover:shadow-xl bg-[#F5FAFD] 
+                             transition-transform duration-300 hover:-translate-y-1.5 transform-gpu will-change-transform">
+              <CardContent className="p-6 flex flex-col h-full">
+                {/* ⭐ Rating */}
+                <div className="flex gap-1 mb-3">
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className="h-5 w-5 fill-yellow-400 text-yellow-400 drop-shadow-sm"
+                    />
+                  ))}
+                </div>
+
+                {/* 💬 Comment */}
+                <p className="text-muted-foreground mb-5 italic flex-grow leading-relaxed text-[15px]">
+                  “{t.comment}”
+                </p>
+
+                {/* 👤 Author */}
+                <div className="border-t border-gray-200 pt-3">
+                  <p className="font-semibold text-card-foreground">{t.name}</p>
+                  <p className="text-sm text-muted-foreground">{t.role}</p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </CarouselItem>
+      )),
+    []
+  );
+
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section
+      id="testimonials"
+      className="py-20 bg-gradient-to-b from-white to-gray-50 scroll-mt-20"
+    >
       <div className="container mx-auto px-4">
         <LazyMotion features={domAnimation}>
           {/* 🧠 Header */}
           <motion.div
             className="text-center mb-14"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
           >
@@ -88,57 +146,13 @@ const Testimonials = () => {
               align: "start",
               loop: true,
             }}
-            className="w-full max-w-5xl mx-auto select-none"
+            className="w-full max-w-5xl mx-auto"
           >
-            <CarouselContent>
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem
-                  key={testimonial.name}
-                  className="md:basis-1/2 lg:basis-1/3 px-2"
-                >
-                  <motion.div
-                    variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                    custom={index}
-                  >
-                    <Card className="h-full rounded-2xl shadow-card hover:shadow-lg transition-all duration-300 bg-[#F5FAFD] hover:-translate-y-1">
-                      <CardContent className="p-6 flex flex-col h-full">
-                        {/* ⭐ Rating */}
-                        <div className="flex gap-1 mb-3">
-                          {Array.from({ length: testimonial.rating }).map((_, i) => (
-                            <Star
-                              key={i}
-                              className="h-5 w-5 fill-yellow-400 text-yellow-400 drop-shadow-sm"
-                            />
-                          ))}
-                        </div>
-
-                        {/* 💬 Comment */}
-                        <p className="text-muted-foreground mb-5 italic flex-grow leading-relaxed text-[15px]">
-                          “{testimonial.comment}”
-                        </p>
-
-                        {/* 👤 Author */}
-                        <div className="border-t border-gray-200 pt-3">
-                          <p className="font-semibold text-card-foreground">
-                            {testimonial.name}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {testimonial.role}
-                          </p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
+            <CarouselContent>{testimonialCards}</CarouselContent>
 
             {/* 🧭 Controls */}
-            <CarouselPrevious className="hidden md:flex focus:outline-none focus:ring-0 hover:scale-110 transition-transform" />
-            <CarouselNext className="hidden md:flex focus:outline-none focus:ring-0 hover:scale-110 transition-transform" />
+            <CarouselPrevious className="hidden md:flex focus:outline-none focus:ring-0 hover:scale-110 transition-transform duration-200" />
+            <CarouselNext className="hidden md:flex focus:outline-none focus:ring-0 hover:scale-110 transition-transform duration-200" />
           </Carousel>
         </LazyMotion>
       </div>
