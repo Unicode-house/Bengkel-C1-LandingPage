@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
 import { memo, useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence, Variants, LazyMotion, domAnimation } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-// 🧱 Static Data
+// 🧱 Static Data (pindah di luar komponen → biar gak re-create tiap render)
 const categories = [
   "Semua",
   "Bangunan Baru & Renovasi",
@@ -20,50 +19,44 @@ const categories = [
 
 const projects = [
   {
-    images: ["/assets/Rumah 2 Lt.jpg", "/assets/Rumah 2 Lt.jpg", "/assets/Rumah 2 Lt.jpg"],
+    images: ["/assets/Rumah-2Lt.webp"],
     title: "Rumah 2 Lt",
     location: "Sawangan, Depok",
     category: "Bangunan Baru & Renovasi",
-    detail: `Pengerjaan renovasi total ini mencakup pembongkaran struktur lama dan pembangunan fondasi baru...`,
-    testimonial:
-      "Proses renovasinya sangat terstruktur. Timnya komunikatif dan hasilnya melebihi ekspektasi.",
+    detail: "Pengerjaan renovasi total dengan fondasi baru dan sistem drainase modern.",
+    testimonial: "Proses renovasinya terstruktur, hasilnya melebihi ekspektasi.",
   },
   {
-    images: ["/assets/pagar.jpg", "/assets/Pagar.jpg", "/assets/pagar.png"],
+    images: ["/assets/pagar.webp"],
     title: "Pagar",
     location: "Ciracas, Jakarta Timur",
     category: "Pagar & Trails",
-    detail:
-      "Fabrikasi pagar besi berfokus pada kekuatan struktural dan presisi estetika...",
-    testimonial:
-      "Hasil akhirnya benar-benar memuaskan. Pekerjaannya rapi dan kokoh.",
+    detail: "Fabrikasi pagar besi dengan kekuatan struktural dan presisi estetika.",
+    testimonial: "Pekerjaannya rapi dan kokoh, hasilnya memuaskan.",
   },
   {
-    images: ["/assets/Kanopi.jpg", "/assets/kanopi.jpg"],
+    images: ["/assets/Kanopi.webp"],
     title: "Kanopi",
     location: "Cibubur, Jakarta Timur",
     category: "Kanopi",
-    detail:
-      "Proyek instalasi kanopi ini mencakup perakitan rangka struktural dari baja ringan...",
-    testimonial: "Kanopi-nya keren banget, adem dan tahan hujan.",
+    detail: "Instalasi kanopi baja ringan dengan sistem peredam panas modern.",
+    testimonial: "Kanopinya adem banget, tampilannya modern.",
   },
   {
-    images: ["/assets/Jendela.jpg", "/assets/jendela.png"],
+    images: ["/assets/Jendela.webp"],
     title: "Jendela",
     location: "Gading, Jakarta Utara",
     category: "Kusen, Pintu & Jendela",
-    detail:
-      "Pengerjaan jendela dan kusen aluminium dengan teknik presisi tinggi untuk kedap air.",
-    testimonial: "Rapi dan kuat, hasilnya profesional banget.",
+    detail: "Pengerjaan jendela aluminium dengan teknik presisi kedap air.",
+    testimonial: "Rapi, kuat, hasilnya profesional banget.",
   },
-  // dst...
 ];
 
-// 🎬 Animasi ringan
+// ⚙️ Variants animasi ringan (GPU-friendly)
 const fadeVariants: Variants = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { duration: 0.4, ease: "easeOut" } },
-  exit: { opacity: 0, transition: { duration: 0.3, ease: "easeInOut" } },
+  show: { opacity: 1, transition: { duration: 0.35, ease: "easeOut" } },
+  exit: { opacity: 0, transition: { duration: 0.25, ease: "easeInOut" } },
 };
 
 const GalleryPage = () => {
@@ -71,28 +64,23 @@ const GalleryPage = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [currentImage, setCurrentImage] = useState(0);
 
-  // ⚡ useMemo → gak re-filter tiap render
-  const filteredProjects = useMemo(() => {
-    return activeCategory === "Semua"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
-  }, [activeCategory]);
+  // ⚡ useMemo biar filtering gak re-run tiap render
+  const filteredProjects = useMemo(
+    () => (activeCategory === "Semua" ? projects : projects.filter((p) => p.category === activeCategory)),
+    [activeCategory]
+  );
 
-  // ⚡ useCallback buat slider navigation
+  // ⚡ Callback memoized untuk navigasi gambar
   const handleNextImage = useCallback(() => {
-    if (selectedProject) {
-      setCurrentImage((prev) =>
-        prev === selectedProject.images.length - 1 ? 0 : prev + 1
-      );
-    }
+    if (selectedProject)
+      setCurrentImage((prev) => (prev + 1) % selectedProject.images.length);
   }, [selectedProject]);
 
   const handlePrevImage = useCallback(() => {
-    if (selectedProject) {
+    if (selectedProject)
       setCurrentImage((prev) =>
         prev === 0 ? selectedProject.images.length - 1 : prev - 1
       );
-    }
   }, [selectedProject]);
 
   return (
@@ -101,20 +89,19 @@ const GalleryPage = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="pt-32 pb-20 bg-gray-50 min-h-screen"
+        className="pt-28 pb-16 bg-gray-50 min-h-screen overflow-hidden will-change-transform"
       >
         <div className="container mx-auto px-4">
           {/* Filter Buttons */}
-          <div className="flex overflow-x-auto whitespace-nowrap mb-5 gap-3 scrollbar-hide">
+          <div className="flex overflow-x-auto whitespace-nowrap mb-6 gap-2 scrollbar-hide snap-x">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full border text-sm transition-all duration-300 ${
-                  activeCategory === cat
+                className={`px-4 py-2 rounded-full border text-sm snap-start transition-all duration-300
+                  ${activeCategory === cat
                     ? "bg-[#05677E] text-white border-[#05677E] shadow-md"
-                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-                }`}
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"}`}
               >
                 {cat}
               </button>
@@ -129,7 +116,7 @@ const GalleryPage = () => {
               initial="hidden"
               animate="show"
               exit="exit"
-              className="grid md:grid-cols-3 sm:grid-cols-2 gap-6"
+              className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
             >
               {filteredProjects.map((p) => (
                 <motion.div
@@ -138,19 +125,22 @@ const GalleryPage = () => {
                     setSelectedProject(p);
                     setCurrentImage(0);
                   }}
-                  className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer bg-white border border-gray-200 hover:bg-[#05677E]"
+                  className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-2xl 
+                             bg-white border border-gray-200 cursor-pointer transition-all duration-500 hover:bg-[#05677E]"
+                  variants={fadeVariants}
                 >
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img
-                      src={p.images[0]}
-                      alt={p.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-90"
-                    />
-                  </div>
-                  <div className="p-4 text-center transition-colors duration-300">
-                    <h3 className="font-semibold text-lg text-[#05677E] group-hover:text-white">
+                  <img
+                    src={p.images[0]}
+                    alt={p.title}
+                    loading="lazy"
+                    decoding="async"
+                    width={600}
+                    height={450}
+                    className="w-full h-auto object-cover aspect-[4/3] transition-all duration-700 
+                               group-hover:scale-105 group-hover:brightness-90"
+                  />
+                  <div className="p-4 text-center">
+                    <h3 className="font-semibold text-base md:text-lg text-[#05677E] group-hover:text-white">
                       {p.title}
                     </h3>
                     <p className="text-sm text-gray-600 group-hover:text-white/90">
@@ -163,102 +153,98 @@ const GalleryPage = () => {
           </AnimatePresence>
         </div>
 
-        {/* 🧩 MODAL DETAIL */}
+        {/* 🔍 Modal Detail */}
         <AnimatePresence>
           {selectedProject && (
             <motion.div
-              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md overflow-y-auto"
+              className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center overflow-y-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              transition={{ duration: 0.25 }}
             >
-              <div className="flex items-center justify-center min-h-screen p-0 md:p-4">
-                <motion.div
-                  className="bg-white w-full max-w-7xl shadow-xl flex flex-col md:flex-row rounded-none md:rounded-2xl overflow-hidden"
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                >
-                  {/* 🖼️ SLIDER */}
-                  <div className="relative w-full md:w-1/2 p-4 bg-white flex flex-col items-center justify-center">
-                    <div className="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden">
-                      <AnimatePresence mode="wait">
-                        <motion.img
-                          key={selectedProject.images[currentImage]}
-                          src={selectedProject.images[currentImage]}
-                          alt={selectedProject.title}
-                          initial={{ opacity: 0, x: 100 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -100 }}
-                          transition={{ duration: 0.4, ease: "easeInOut" }}
-                          className="absolute w-full h-full object-cover"
-                        />
-                      </AnimatePresence>
-                    </div>
-
-                    {selectedProject.images.length > 1 && (
-                      <>
-                        <button
-                          onClick={handlePrevImage}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-700 p-2 rounded-full shadow-md"
-                        >
-                          <ChevronLeft size={22} />
-                        </button>
-                        <button
-                          onClick={handleNextImage}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-700 p-2 rounded-full shadow-md"
-                        >
-                          <ChevronRight size={22} />
-                        </button>
-                      </>
-                    )}
-
-                    <button
-                      onClick={() => setSelectedProject(null)}
-                      className="absolute top-3 right-3 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full shadow-sm md:hidden"
-                    >
-                      <X size={20} />
-                    </button>
+              <motion.div
+                className="bg-white w-full max-w-5xl mx-2 md:mx-auto shadow-xl flex flex-col md:flex-row rounded-xl overflow-hidden"
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+              >
+                {/* 🖼️ Image Section */}
+                <div className="relative w-full md:w-1/2 p-4 flex flex-col items-center justify-center bg-gray-50">
+                  <div className="relative w-full aspect-[16/9] bg-gray-200 rounded-xl overflow-hidden">
+                    <AnimatePresence mode="wait">
+                      <motion.img
+                        key={selectedProject.images[currentImage]}
+                        src={selectedProject.images[currentImage]}
+                        alt={selectedProject.title}
+                        initial={{ opacity: 0, x: 60 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -60 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="absolute w-full h-full object-cover"
+                      />
+                    </AnimatePresence>
                   </div>
 
-                  {/* 📋 DETAIL */}
-                  <div className="relative w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
-                    <button
-                      onClick={() => setSelectedProject(null)}
-                      className="hidden md:block absolute top-6 right-6 text-gray-500 hover:text-gray-800 transition"
-                    >
-                      <X size={26} />
-                    </button>
+                  {/* Nav Buttons */}
+                  {selectedProject.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={handlePrevImage}
+                        className="absolute left-5 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow"
+                      >
+                        <ChevronLeft size={20} />
+                      </button>
+                      <button
+                        onClick={handleNextImage}
+                        className="absolute right-5 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow"
+                      >
+                        <ChevronRight size={20} />
+                      </button>
+                    </>
+                  )}
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="absolute top-3 right-3 bg-white/90 hover:bg-white text-gray-700 p-2 rounded-full md:hidden"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
 
-                    <h2 className="text-2xl md:text-3xl font-bold text-[#05677E] mb-1 leading-snug">
-                      {selectedProject.title}
-                    </h2>
-                    <p className="text-gray-600 mb-6 text-sm md:text-base">
-                      {selectedProject.location}
+                {/* 📋 Detail Section */}
+                <div className="w-full md:w-1/2 p-6 md:p-10 relative">
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="hidden md:block absolute top-6 right-6 text-gray-500 hover:text-gray-800 transition"
+                  >
+                    <X size={24} />
+                  </button>
+
+                  <h2 className="text-xl md:text-2xl font-bold text-[#05677E] mb-2">
+                    {selectedProject.title}
+                  </h2>
+                  <p className="text-gray-600 mb-4 text-sm md:text-base">{selectedProject.location}</p>
+
+                  <div className="mb-4">
+                    <h3 className="bg-[#E5E4FA] text-[#344A52] px-3 py-1 rounded-lg font-semibold inline-block mb-2 text-sm">
+                      Detail Pengerjaan
+                    </h3>
+                    <p className="text-sm md:text-[15px] text-gray-700 leading-relaxed">
+                      {selectedProject.detail}
                     </p>
-
-                    <div className="mb-6">
-                      <h3 className="bg-[#E5E4FA] text-[#344A52] px-4 py-2 rounded-xl font-semibold inline-block mb-3 text-sm md:text-base">
-                        Detail Pengerjaan
-                      </h3>
-                      <p className="text-sm md:text-[15px] text-gray-700 leading-relaxed">
-                        {selectedProject.detail}
-                      </p>
-                    </div>
-
-                    <div>
-                      <h3 className="bg-[#E5E4FA] text-[#344A52] px-4 py-2 rounded-xl font-semibold inline-block mb-3 text-sm md:text-base">
-                        Apa kata mereka?
-                      </h3>
-                      <p className="text-sm md:text-[15px] text-gray-700 leading-relaxed">
-                        {selectedProject.testimonial}
-                      </p>
-                    </div>
                   </div>
-                </motion.div>
-              </div>
+
+                  <div>
+                    <h3 className="bg-[#E5E4FA] text-[#344A52] px-3 py-1 rounded-lg font-semibold inline-block mb-2 text-sm">
+                      Apa kata mereka?
+                    </h3>
+                    <p className="text-sm md:text-[15px] text-gray-700 leading-relaxed">
+                      {selectedProject.testimonial}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
