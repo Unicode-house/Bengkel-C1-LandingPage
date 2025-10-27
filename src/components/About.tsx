@@ -97,7 +97,7 @@ const About = () => {
             <motion.div
               className="relative overflow-hidden shadow-card hover-lift rounded-2xl w-full h-80"
               style={{
-                backgroundImage: "url('/assets/aboutus-image.png')",
+                backgroundImage: "url('/assets/aboutus-image.jpg')",
                 backgroundSize: "100% 100%", 
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
