@@ -1,6 +1,13 @@
 "use client";
 import { memo, useCallback } from "react";
-import { MapPin, Phone } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Facebook,
+  Instagram,
+  Youtube,
+  MessageSquare,
+} from "lucide-react"; // 🧩 Tambahin icon media sosial
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
 import engineeringImg from "/assets/engineering.jpg";
 
@@ -16,9 +23,33 @@ const menuItems = [
 
 const contacts = [
   { icon: MapPin, text: "Alamat 1 - Jl. Merdeka No. 123, Bogor" },
-  { icon: MapPin, text: "Alamat 2 - Jl. Raya Pajajaran, Bogor" },
-  { icon: MapPin, text: "Alamat 3 - Jl. Ciomas, Bogor Barat" },
-  { icon: Phone, text: "0826-2897-7634", link: "tel:082628977634" },
+  { icon: MessageSquare, text: "____" },
+  { icon: Phone, text: "085323453369", link: "tel:085323453369" },
+];
+
+// 🌐 Sosial Media
+const socials = [
+  {
+    name: "Facebook",
+    icon: Facebook,
+    link: "https://www.facebook.com/share/176FrjUn4E/",
+  },
+  {
+    name: "Instagram",
+    icon: Instagram,
+    link: "https://www.instagram.com/bengkellasmandiritehnik",
+  },
+  {
+    name: "TikTok",
+    icon: MessageSquare, // bisa diganti pake react-icons FaTiktok biar lebih pas
+    link: "https://www.tiktok.com/@bengkel.las.mandi86?_t=ZS-90foBLLR5E0&_r=1",
+  },
+  {
+    name: "YouTube",
+    icon: Youtube,
+    link: "https://youtube.com/@mandiritehniklaslistrik-pi7ip?si=OUc0rU3GHokfZgFK",
+  },
+
 ];
 
 // ⚙️ Animation Variants
@@ -34,7 +65,6 @@ const fadeUp: Variants = {
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  // ⚡ Optimized scroll handler
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (!element) return;
@@ -103,7 +133,7 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* 📞 Contact */}
+          {/* 📞 Contact + Social */}
           <motion.div
             className="space-y-4"
             variants={fadeUp}
@@ -130,6 +160,26 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
+
+            <div className="pt-4">
+              <h4 className="text-lg font-bold text-[#05677E] mb-2">
+                Sosial Media
+              </h4>
+              <div className="flex flex-wrap gap-4">
+                {socials.map((social, i) => (
+                  <a
+                    key={i}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:text-[#05677E] transition-colors"
+                  >
+                    <social.icon className="h-5 w-5" />
+                    <span className="text-sm">{social.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
 
