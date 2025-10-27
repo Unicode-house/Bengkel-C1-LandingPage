@@ -2,7 +2,7 @@
 import { memo } from "react";
 import { Shield, Award, Lightbulb, Clock } from "lucide-react";
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
-import teamImage from "/assets/aboutus-image.png";
+import teamImage from "/assets/aboutus-image.jpg";
 
 // 🧱 Data tetap di luar komponen agar gak re-create tiap render
 const values = [
@@ -52,7 +52,7 @@ const About = () => {
   return (
     <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        {/* ✅ LazyMotion biar FramerMotion gak load berlebihan */}
+
         <LazyMotion features={domAnimation}>
           {/* Title Section */}
           <motion.div
@@ -97,7 +97,7 @@ const About = () => {
             <motion.div
               className="relative overflow-hidden shadow-card hover-lift rounded-2xl w-full h-80"
               style={{
-                backgroundImage: "url('/assets/aboutus-image.jpg')",
+                backgroundImage: "url(" + teamImage + ")",
                 backgroundSize: "100% 100%", 
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
