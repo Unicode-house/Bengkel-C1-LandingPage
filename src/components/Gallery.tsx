@@ -7,25 +7,25 @@ import { useNavigate } from "react-router-dom";
 // 🧱 Static data: pindah ke luar komponen biar gak re-create tiap render
 const projects = [
   {
-    image: "assets/foto34.jpg",
+    image: "assets/galeri (1).jpg",
     title: "Pagar Besi Minimalis",
     location: "Bogor",
     description: "Pagar custom dengan desain modern dan elegan",
   },
   {
-    image: "assets/foto41.jpg",
+    image: "assets/galeri (2).jpg",
     title: "Kanopi Polycarbonate",
     location: "Jakarta",
     description: "Kanopi modern untuk area entrance",
   },
   {
-    image: "assets/foto9.jpg",
+    image: "assets/galeri (3).jpg",
     title: "Folding Gate Alumunium",
     location: "Depok",
     description: "Pintu lipat untuk toko modern",
   },
   {
-    image: "assets/foto40.jpg",
+    image: "assets/galeri (4).jpg",
     title: "Renovasi Bangunan Komersial",
     location: "Tangerang",
     description: "Renovasi facade bangunan profesional",
@@ -148,5 +148,4 @@ const Gallery = () => {
   );
 };
 
-// 🚀 memo untuk cegah rerender tanpa perubahan props
 export default memo(Gallery);

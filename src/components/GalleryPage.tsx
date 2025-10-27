@@ -2,7 +2,13 @@
 "use client";
 
 import { memo, useState, useCallback, useMemo } from "react";
-import { motion, AnimatePresence, Variants, LazyMotion, domAnimation } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  Variants,
+  LazyMotion,
+  domAnimation,
+} from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 // 🧱 Static Data
@@ -20,43 +26,84 @@ const categories = [
 
 const projects = [
   {
-    images: ["/assets/Rumah 2 Lt.jpg", "/assets/Rumah 2 Lt.jpg", "/assets/Rumah 2 Lt.jpg"],
+    images: [
+      "/assets/galeri-page (1).jpg",
+      "/assets/galeri-detail (3).jpg",
+    ],
     title: "Rumah 2 Lt",
     location: "Sawangan, Depok",
     category: "Bangunan Baru & Renovasi",
-    detail: `Pengerjaan renovasi total ini mencakup pembongkaran struktur lama dan pembangunan fondasi baru...`,
+    detail: `Proyek hunian 2 tingkat ini melibatkan pengerjaan struktur lengkap, diawali dengan perencanaan teknis dan pengecoran fondasi yang dirancang presisi untuk menopang beban ganda. Konstruksi inti berlanjut pada pengerjaan rangka beton bertulang, mencakup kolom, balok, dan plat lantai yang dieksekusi untuk menjamin integritas dan kekuatan bangunan. Tahap pengerjaan kemudian ditutup dengan penyelesaian arsitektural yang komprehensif, meliputi pemasangan dinding, instalasi rangka atap, plafon, serta finishing detail pada interior dan eksterior.`,
     testimonial:
-      "Proses renovasinya sangat terstruktur. Timnya komunikatif dan hasilnya melebihi ekspektasi.",
+      "Saya waktu itu punya rencana ingin punya tempat pernikahan seperti aula, dan alhamdulillah terwujud. Walaupun dengan budget yang disesuaikan, tapi hasilnya OK dan desainnya bagus.",
   },
   {
-    images: ["/assets/pagar.jpg", "/assets/Pagar.jpg", "/assets/pagar.png"],
+    images: [
+      "/assets/galeri-page (6).jpg",
+      "/assets/galeri-detail (1).jpg",
+    ],
     title: "Pagar",
     location: "Ciracas, Jakarta Timur",
     category: "Pagar & Trails",
     detail:
-      "Fabrikasi pagar besi berfokus pada kekuatan struktural dan presisi estetika...",
+      "Fabrikasi pagar besi berfokus pada kekuatan struktural dan presisi estetika. Proses ini meliputi fabrikasi rangka utama dan panel custom (minimalis, tempa, atau pola laser-cut) menggunakan material besi hollow atau solid. Setiap sambungan mendapatkan pengelasan penuh yang kemudian dihaluskan (grinding) untuk hasil yang rapi. Pengerjaan diakhiri dengan pelapisan cat dasar anti-rust (anti karat) dan beberapa lapis cat finishing untuk memastikan durabilitas tinggi terhadap cuaca dan kondisi eksterior.",
     testimonial:
-      "Hasil akhirnya benar-benar memuaskan. Pekerjaannya rapi dan kokoh.",
+      "Hasil akhirnya benar-benar memuaskan. Pekerjaannya rapi, detail, dan sangat kokoh. Saya tidak ragu merekomendasikan Mandiri Teknik untuk pekerjaan pintu gerbang.",
   },
   {
-    images: ["/assets/Kanopi.jpg", "/assets/kanopi.jpg"],
+    images: [
+      "/assets/galeri-page (3).jpg",
+      "/assets/galeri (4).jpg",
+    ],
     title: "Kanopi",
     location: "Cibubur, Jakarta Timur",
     category: "Kanopi",
     detail:
-      "Proyek instalasi kanopi ini mencakup perakitan rangka struktural dari baja ringan...",
-    testimonial: "Kanopi-nya keren banget, adem dan tahan hujan.",
+      "Proyek instalasi kanopi ini mencakup perakitan rangka struktural (baik menggunakan baja ringan atau besi hollow) yang dirancang untuk menopang atap secara efektif dan mengelola aliran air. Pengerjaan meliputi instalasi tiang dan rangka utama yang kokoh. Pemasangan material atap (seperti Alderon, Spandek, atau polikarbonat) dilakukan dengan presisi tinggi untuk menjamin kekedapan air dan mencegah kebocoran, seringkali diintegrasikan dengan sistem talang air yang rapi.",
+    testimonial:
+      "Kami bersyukur bisa mempunyai kanopi dengan atap yang bagus (Alderon), sehingga tidak jadi penghalang jamaah untuk beribadah ke mesjid karena teras jadi aman dari hujan.",
   },
   {
-    images: ["/assets/Jendela.jpg", "/assets/jendela.png"],
+    images: [
+      "/assets/galeri-page (5).jpg",
+      "/assets/galeri (2).jpg",
+    ],
     title: "Jendela",
     location: "Gading, Jakarta Utara",
     category: "Kusen, Pintu & Jendela",
     detail:
-      "Pengerjaan jendela dan kusen aluminium dengan teknik presisi tinggi untuk kedap air.",
-    testimonial: "Rapi dan kuat, hasilnya profesional banget.",
+      "Proyek ini melibatkan perakitan dan instalasi unit kusen, pintu, dan jendela menggunakan material aluminium. Fokus pengerjaan terletak pada pemotongan profil aluminium yang presisi dan perakitan yang rapat untuk memastikan unit kedap air dan udara. Instalasi kaca dan panel menggunakan segel karet berkualitas, dipastikan lurus (level) dan berfungsi mulus.",
+    testimonial:
+      "Alhamdulillah... lalu pintu alumunium kamar mandi, jendela rumah sama pondok, semua dikerjakan kang haji ade, hasilnya baik, rapih.",
   },
-  // dst...
+  {
+    images: [
+      "/assets/galeri-page (4).jpg",
+      "/assets/Custom Metalwork.jpg",
+    ],
+    title: "Custom Metalwork",
+    location: "Pondok Kelapa, Jakarta Timur",
+    category: "Custom Metalwork",
+    detail:
+      "Layanan fabrikasi logam custom berdasarkan desain unik. Melibatkan pemotongan, pembengkokan, hingga perakitan struktur logam kompleks sesuai kebutuhan.",
+    testimonial:
+      "Pekerjaan sangat presisi dan hasil akhirnya sesuai desain. Mandiri Teknik selalu bisa diandalkan.",
+  },
+  
+  {
+    images: [
+      "/assets/galeri (1).jpg",
+      "/assets/galeri-detail-tangga.jpg",
+    ],
+    title: "Tangga",
+    location: "Depok, Jawa Barat",
+    category: "Pagar & Trails",
+    detail:
+      "Railing tangga modern dari kombinasi stainless steel dan kaca tempered 10mm. Fokus pengerjaan pada kekuatan struktur dan tampilan elegan.",
+    testimonial:
+      "Tangga tampil mewah dan sangat aman. Semua sambungan halus dan presisi.",
+  },
+  
 ];
 
 // 🎬 Animasi ringan

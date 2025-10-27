@@ -2,7 +2,7 @@
 import { memo } from "react";
 import { Shield, Award, Lightbulb, Clock } from "lucide-react";
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
-import teamImage from "/assets/team-workshop.jpg";
+import teamImage from "/assets/aboutus-image.png";
 
 // 🧱 Data tetap di luar komponen agar gak re-create tiap render
 const values = [
@@ -84,9 +84,9 @@ const About = () => {
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Sejak 2009, kami telah melayani ribuan klien dengan dedikasi
-                penuh. Dari proyek rumah tinggal hingga bangunan komersial,
-                kami hadir sebagai mitra terpercaya Anda dalam mewujudkan
-                konstruksi yang berkualitas.
+                penuh. Dari proyek rumah tinggal hingga bangunan komersial, kami
+                hadir sebagai mitra terpercaya Anda dalam mewujudkan konstruksi
+                yang berkualitas.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Tim mekanik kami yang berpengalaman siap memberikan solusi
@@ -95,15 +95,21 @@ const About = () => {
             </motion.div>
 
             <motion.div
-              className="relative rounded-2xl overflow-hidden shadow-card hover-lift h-80 bg-cover bg-center"
-              style={{ backgroundImage: `url(${teamImage})` }}
+              className="relative overflow-hidden shadow-card hover-lift rounded-2xl w-full h-80"
+              style={{
+                backgroundImage: "url('/assets/aboutus-image.png')",
+                backgroundSize: "100% 100%", 
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                // backgroundClip: "border-box",
+              }}
               onContextMenu={(e) => e.preventDefault()}
               variants={fadeUp}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <div className="absolute inset-0 bg-black/10" />
+              <div className="absolute inset-0 bg-transparent " />
             </motion.div>
           </div>
 
@@ -137,5 +143,4 @@ const About = () => {
   );
 };
 
-// 🧠 memo() biar gak rerender kalau parent berubah
 export default memo(About);

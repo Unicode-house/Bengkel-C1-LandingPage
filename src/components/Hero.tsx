@@ -2,7 +2,7 @@
 import { memo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, ChevronDown } from "lucide-react";
-import heroImage from "/assets/hero-construction.jpg";
+import heroImage from "/assets/image-hero.jpg";
 import { motion, LazyMotion, domAnimation } from "framer-motion";
 
 const Hero = () => {
