@@ -8,27 +8,27 @@ import { useNavigate } from "react-router-dom";
 const projects = [
   {
     image: "assets/galeri (1).jpg",
-    title: "Pagar Besi Minimalis",
+    title: "Tangga Stainless Steel",
     location: "Bogor",
-    description: "Pagar custom dengan desain modern dan elegan",
+    description: "tangga modern dengan railing stainless steel" ,
   },
   {
     image: "assets/galeri (2).jpg",
-    title: "Kanopi Polycarbonate",
+    title: "Jendela Aluminium",
     location: "Jakarta",
-    description: "Kanopi modern untuk area entrance",
+    description: "Jendela rumah dengan kusen aluminium tahan lama",
   },
   {
     image: "assets/galeri (3).jpg",
-    title: "Folding Gate Alumunium",
+    title: "Renovasi rumah tinggal",
     location: "Depok",
-    description: "Pintu lipat untuk toko modern",
+    description: "Renovasi rumah minimalis modern" ,
   },
   {
     image: "assets/galeri (4).jpg",
-    title: "Renovasi Bangunan Komersial",
+    title: "kanopi carport",
     location: "Tangerang",
-    description: "Renovasi facade bangunan profesional",
+    description: "Kanopi carport dengan atap alderon anti panas",
   },
 ];
 

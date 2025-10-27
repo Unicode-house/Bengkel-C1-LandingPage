@@ -1,12 +1,10 @@
 "use client";
 import { memo } from "react";
-import valuesBg from "/assets/values-bg.jpg";
+import valuesBg from "/assets/values-bg 1.jpg";
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
 
-// 🧱 Static values di luar komponen biar gak re-create tiap render
 const companyValues = ["Amanah", "Profesional", "Inovatif", "Tanggung Jawab", "Kualitas"];
 
-// ⚙️ Variants reusable, ringan, dan GPU-friendly
 const listVariants: Variants = {
   hidden: { opacity: 0, x: -15 },
   visible: (i: number) => ({
