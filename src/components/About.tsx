@@ -2,7 +2,7 @@
 import { memo } from "react";
 import { Shield, Award, Lightbulb, Clock } from "lucide-react";
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
-import teamImage from "/assets/aboutus-image.jpg";
+import teamImage from "/assets/aboutus-image.webp";
 
 // 🧱 Data tetap di luar komponen agar gak re-create tiap render
 const values = [
