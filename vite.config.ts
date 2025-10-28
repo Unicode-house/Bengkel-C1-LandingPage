@@ -42,7 +42,6 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: {
-          // 👇 vendor dipisah biar gak ke-load bareng bundle utama
           react: ["react", "react-dom"],
           vendor: ["react-router-dom",],
         },

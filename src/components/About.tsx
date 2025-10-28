@@ -95,7 +95,7 @@ const About = () => {
             </motion.div>
 
             <motion.div
-              className="relative overflow-hidden shadow-card hover-lift rounded-2xl w-full h-80"
+              className="relative overflow-hidden shadow-card hover-lift rounded-2xl w-full aspect-[16/9] md:aspect-[3/2]"
               style={{
                 backgroundImage: "url(" + teamImage + ")",
                 backgroundSize: "100% 100%", 
