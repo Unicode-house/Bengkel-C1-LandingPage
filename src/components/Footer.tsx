@@ -9,7 +9,7 @@ import {
   MessageSquare,
 } from "lucide-react"; // 🧩 Tambahin icon media sosial
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
-import engineeringImg from "/assets/engineering.jpg";
+import engineeringImg from "/assets/logo-non-background.webp";
 
 const menuItems = [
   { label: "Home", id: "hero" },
@@ -41,7 +41,7 @@ const socials = [
   },
   {
     name: "TikTok",
-    icon: MessageSquare, 
+    icon: MessageSquare,
     link: "https://www.tiktok.com/@bengkel.las.mandi86?_t=ZS-90foBLLR5E0&_r=1",
   },
   {
@@ -49,7 +49,6 @@ const socials = [
     icon: Youtube,
     link: "https://youtube.com/@mandiritehniklaslistrik-pi7ip?si=OUc0rU3GHokfZgFK",
   },
-
 ];
 
 // ⚙️ Animation Variants
@@ -87,24 +86,24 @@ const Footer = () => {
             custom={0}
           >
             <div className="flex items-center gap-3">
-              <div className="bg-white p-3 rounded-full flex items-center justify-center shadow-sm">
+              <div className="flex items-center justify-center bg-white  w-[90px] h-[90px] ">
                 <img
                   src={engineeringImg}
                   alt="Mandiri Teknik Hade Logo"
                   loading="lazy"
                   decoding="async"
-                  className="h-11 w-11 object-contain"
+                  className="w-full h-full object-contain scale-110"
                 />
               </div>
-              <h3 className="text-xl font-bold text-[#05677E] leading-tight">
+              <h3 className="text-2xl font-bold text-[#05677E] leading-snug tracking-tight">
                 MANDIRI <br /> TEKNIK HADE
               </h3>
             </div>
 
             <p className="text-sm text-gray-600 leading-relaxed">
-              Sejak 2009, kami telah melayani ribuan klien dengan dedikasi penuh.
-              Dari proyek rumah tinggal hingga bangunan komersial, kami hadir
-              sebagai mitra terpercaya Anda dalam mewujudkan konstruksi
+              Sejak 2009, kami telah melayani ribuan klien dengan dedikasi
+              penuh. Dari proyek rumah tinggal hingga bangunan komersial, kami
+              hadir sebagai mitra terpercaya Anda dalam mewujudkan konstruksi
               berkualitas dan profesional.
             </p>
           </motion.div>

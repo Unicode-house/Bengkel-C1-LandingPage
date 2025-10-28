@@ -28,7 +28,7 @@ const projects = [
   {
     images: [
       "/assets/galeri-page (1).jpg",
-      "/assets/galeri-detail (3).jpg",
+      "/assets/galeri-detail-preview (9).webp",
     ],
     title: "Rumah 2 Lt",
     location: "Sawangan, Depok",
@@ -40,7 +40,7 @@ const projects = [
   {
     images: [
       "/assets/galeri-page (6).jpg",
-      "/assets/galeri-detail (1).jpg",
+      "/assets/galeri-detail-preview (1).webp",
     ],
     title: "Pagar",
     location: "Ciracas, Jakarta Timur",
@@ -53,7 +53,7 @@ const projects = [
   {
     images: [
       "/assets/galeri-page (3).jpg",
-      "/assets/galeri (4).jpg",
+      "/assets/galeri-detail-preview (9).webp",
     ],
     title: "Kanopi",
     location: "Cibubur, Jakarta Timur",
@@ -66,7 +66,7 @@ const projects = [
   {
     images: [
       "/assets/galeri-page (5).jpg",
-      "/assets/galeri (2).jpg",
+      "/assets/galeri-detail-preview (6).webp",
     ],
     title: "Jendela",
     location: "Gading, Jakarta Utara",
@@ -79,7 +79,7 @@ const projects = [
   {
     images: [
       "/assets/galeri-page (4).jpg",
-      "/assets/Custom Metalwork.jpg",
+      "/assets/galeri-detail-preview (5).webp",
     ],
     title: "Custom Metalwork",
     location: "Pondok Kelapa, Jakarta Timur",
@@ -93,7 +93,7 @@ const projects = [
   {
     images: [
       "/assets/galeri (1).jpg",
-      "/assets/galeri-detail-tangga.jpg",
+      "/assets/galeri-detail-preview (4).webp",
     ],
     title: "Tangga",
     location: "Depok, Jawa Barat",
@@ -106,7 +106,6 @@ const projects = [
   
 ];
 
-// 🎬 Animasi ringan
 const fadeVariants: Variants = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { duration: 0.4, ease: "easeOut" } },
@@ -230,7 +229,7 @@ const GalleryPage = () => {
                 >
                   {/* 🖼️ SLIDER */}
                   <div className="relative w-full md:w-1/2 p-4 bg-white flex flex-col items-center justify-center">
-                    <div className="relative w-full aspect-[16/9] bg-gray-100 rounded-xl overflow-hidden">
+                    <div className="relative w-full h-[500px] md:h-[550px] bg-gray-100 rounded-xl overflow-hidden">
                       <AnimatePresence mode="wait">
                         <motion.img
                           key={selectedProject.images[currentImage]}
@@ -240,7 +239,7 @@ const GalleryPage = () => {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -100 }}
                           transition={{ duration: 0.4, ease: "easeInOut" }}
-                          className="absolute w-full h-full object-cover"
+                          className="absolute w-full h-[400px] sm:h-[500px] md:h-[600px] object-cover "
                         />
                       </AnimatePresence>
                     </div>
