@@ -44,7 +44,7 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           // 👇 vendor dipisah biar gak ke-load bareng bundle utama
           react: ["react", "react-dom"],
-          vendor: ["react-router-dom", "axios", "zustand"],
+          vendor: ["react-router-dom",],
         },
       },
     },
