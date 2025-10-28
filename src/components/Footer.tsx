@@ -41,7 +41,7 @@ const socials = [
   },
   {
     name: "TikTok",
-    icon: MessageSquare, // bisa diganti pake react-icons FaTiktok biar lebih pas
+    icon: MessageSquare, 
     link: "https://www.tiktok.com/@bengkel.las.mandi86?_t=ZS-90foBLLR5E0&_r=1",
   },
   {
