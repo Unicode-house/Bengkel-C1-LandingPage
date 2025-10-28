@@ -12,12 +12,23 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === "development" && componentTagger(),
+    // plugin image optimizer
     ViteImageOptimizer({
-      jpg: { quality: 75 },
-      jpeg: { quality: 75 },
-      png: { quality: 75 },
-      webp: { quality: 75 },
-      avif: { quality: 50 },
+      jpg: {
+        quality: 75, // compress jpg
+      },
+      jpeg: {
+        quality: 75,
+      },
+      png: {
+        quality: 75,
+      },
+      webp: {
+        quality: 75,
+      },
+      avif: {
+        quality: 50,
+      },
     }),
   ].filter(Boolean),
 
@@ -31,6 +42,7 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: {
+          // 👇 vendor dipisah biar gak ke-load bareng bundle utama
           react: ["react", "react-dom"],
           vendor: ["react-router-dom", "axios", "zustand"],
         },
