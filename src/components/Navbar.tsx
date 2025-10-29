@@ -27,6 +27,12 @@ const Navbar = () => {
     { label: "Kontak", id: "contact" },
   ];
 
+  // 💬 Chat otomatis WhatsApp
+  const message = encodeURIComponent(
+    "Halo, saya tertarik dengan layanan Anda!"
+  );
+  const waLink = `https://wa.me/628132147393?text=${message}`;
+
   // 🔁 Update ref biar gak trigger rerender terus
   useEffect(() => {
     activeRef.current = activeSection;
@@ -46,7 +52,6 @@ const Navbar = () => {
       return;
     }
 
-    // Optional debounce (buat smooth scroll)
     const debounce = (func: Function, delay: number) => {
       let timeout: NodeJS.Timeout;
       return (...args: any[]) => {
@@ -76,7 +81,6 @@ const Navbar = () => {
       { rootMargin: "-70px 0px -10% 0px", threshold: 0.1 }
     );
 
-    // Observe tiap section
     Object.values(sectionRefs.current).forEach((section) => {
       if (section) observer.observe(section);
     });
@@ -87,7 +91,7 @@ const Navbar = () => {
     };
   }, [location.pathname]);
 
-  // 🚀 Smooth scroll ke section (support navigate dari /projects)
+  // 🚀 Smooth scroll ke section
   const scrollToSection = (sectionId: string) => {
     if (location.pathname !== "/") {
       navigate("/");
@@ -165,9 +169,7 @@ const Navbar = () => {
           <div className="hidden lg:block">
             <Button
               variant="hero"
-              onClick={() =>
-                window.open("https://wa.me/6281234567890", "_blank")
-              }
+              onClick={() => window.open(waLink, "_blank")}
               className="flex items-center gap-2 rounded-xl text-white bg-[#344A52] hover:bg-[#05677E] transition-colors duration-300"
             >
               <FaWhatsapp className="text-lg text-white" />
@@ -206,9 +208,7 @@ const Navbar = () => {
             ))}
             <Button
               variant="hero"
-              onClick={() =>
-                window.open("https://wa.me/628132147393", "_blank")
-              }
+              onClick={() => window.open(waLink, "_blank")}
               className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#05677E] text-white hover:bg-[#344A52]"
             >
               <FaWhatsapp className="text-lg text-white" />
@@ -222,5 +222,4 @@ const Navbar = () => {
   );
 };
 
-// 🚀 React.memo untuk cegah rerender tanpa perubahan props
 export default memo(Navbar);
