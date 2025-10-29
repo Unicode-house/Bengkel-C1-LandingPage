@@ -105,12 +105,14 @@ const Testimonials = () => {
                       <CardContent className="p-6 flex flex-col h-full bg-[#F5FAFD] rounded-xl">
                         {/* ⭐ Rating */}
                         <div className="flex gap-1 mb-4">
-                          {Array.from({ length: testimonial.rating }).map((_, i) => (
-                            <Star
-                              key={i}
-                              className="h-5 w-5 fill-yellow-400 text-yellow-400"
-                            />
-                          ))}
+                          {Array.from({ length: testimonial.rating }).map(
+                            (_, i) => (
+                              <Star
+                                key={i}
+                                className="h-5 w-5 fill-yellow-400 text-yellow-400"
+                              />
+                            )
+                          )}
                         </div>
 
                         {/* 💬 Comment */}
@@ -135,8 +137,8 @@ const Testimonials = () => {
             </CarouselContent>
 
             {/* Controls */}
-            <CarouselPrevious className="focus:outline-none focus:ring-0" />
-            <CarouselNext className="focus:outline-none focus:ring-0" />
+            <CarouselPrevious className="hidden md:flex focus:outline-none focus:ring-0" />
+            <CarouselNext className="hidden md:flex focus:outline-none focus:ring-0" />
           </Carousel>
         </LazyMotion>
       </div>
