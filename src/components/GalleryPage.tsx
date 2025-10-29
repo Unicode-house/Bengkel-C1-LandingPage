@@ -233,38 +233,60 @@ const GalleryPage = () => {
                   transition={{ duration: 0.35, ease: "easeOut" }}
                 >
                   {/* 🖼️ SLIDER */}
-                  <div className="relative w-full md:w-1/2 p-4 bg-white flex flex-col items-center justify-center">
+                  <div className="relative w-full md:w-1/2 p-4 bg-white flex flex-col items-center justify-center select-none">
                     <div className="relative w-full h-[400px] md:h-[550px] bg-gray-100 rounded-xl overflow-hidden">
                       <AnimatePresence mode="wait">
-                        <motion.img
+                        <motion.div
                           key={selectedProject.images[currentImage]}
-                          src={selectedProject.images[currentImage]}
-                          alt={selectedProject.title}
+                          drag="x"
+                          dragElastic={0.3} // 🔥 biar geseran fleksibel
+                          dragConstraints={{ left: 0, right: 0 }}
+                          onDragEnd={(e, { offset, velocity }) => {
+                            const swipe = offset.x * velocity.x;
+                            // geser kiri → next, geser kanan → prev
+                            if (swipe < -10000) {
+                              setCurrentImage((prev) =>
+                                prev === selectedProject.images.length - 1
+                                  ? 0
+                                  : prev + 1
+                              );
+                            } else if (swipe > 10000) {
+                              setCurrentImage((prev) =>
+                                prev === 0
+                                  ? selectedProject.images.length - 1
+                                  : prev - 1
+                              );
+                            }
+                          }}
                           initial={{ opacity: 0, x: 100 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -100 }}
                           transition={{ duration: 0.4, ease: "easeInOut" }}
-                          className="absolute w-full h-[400px] sm:h-[500px] md:h-[600px] object-cover "
-                        />
+                          className="absolute w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
+                        >
+                          <img
+                            src={selectedProject.images[currentImage]}
+                            alt={selectedProject.title}
+                            className="w-full h-full object-cover select-none pointer-events-none"
+                          />
+                        </motion.div>
                       </AnimatePresence>
                     </div>
 
-                    {selectedProject.images.length > 1 && (
-                      <>
+                    {/* 🔘 Dots Indicator */}
+                    <div className="flex mt-4 gap-2">
+                      {selectedProject.images.map((_, index) => (
                         <button
-                          onClick={handlePrevImage}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-700 p-2 rounded-full shadow-md"
-                        >
-                          <ChevronLeft size={22} />
-                        </button>
-                        <button
-                          onClick={handleNextImage}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-700 p-2 rounded-full shadow-md"
-                        >
-                          <ChevronRight size={22} />
-                        </button>
-                      </>
-                    )}
+                          key={index}
+                          onClick={() => setCurrentImage(index)}
+                          className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                            index === currentImage
+                              ? "bg-[#05677E]"
+                              : "bg-gray-300"
+                          }`}
+                        />
+                      ))}
+                    </div>
 
                     <button
                       onClick={() => setSelectedProject(null)}
@@ -319,4 +341,3 @@ const GalleryPage = () => {
 };
 
 export default memo(GalleryPage);
-
