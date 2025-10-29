@@ -26,8 +26,9 @@ const categories = [
 
 const projects = [
   {
+    thumbnail: "/assets/galeri-page (1).jpg",
     images: [
-      "/assets/galeri-page (1).jpg",
+      "/assets/galeri-detail-preview (3).webp",
       "/assets/galeri-detail-preview (9).webp",
     ],
     title: "Rumah 2 Lt",
@@ -38,8 +39,9 @@ const projects = [
       "Saya waktu itu punya rencana ingin punya tempat pernikahan seperti aula, dan alhamdulillah terwujud. Walaupun dengan budget yang disesuaikan, tapi hasilnya OK dan desainnya bagus.",
   },
   {
+    thumbnail: "/assets/galeri-page (6).jpg",
     images: [
-      "/assets/galeri-page (6).jpg",
+      "/assets/galeri-detail-preview (8).webp",
       "/assets/galeri-detail-preview (1).webp",
     ],
     title: "Pagar",
@@ -51,8 +53,9 @@ const projects = [
       "Hasil akhirnya benar-benar memuaskan. Pekerjaannya rapi, detail, dan sangat kokoh. Saya tidak ragu merekomendasikan Mandiri Teknik untuk pekerjaan pintu gerbang.",
   },
   {
+    thumbnail: "/assets/galeri-page (3).jpg",
     images: [
-      "/assets/galeri-page (3).jpg",
+      "/assets/galeri-detail-preview (2).webp",
       "/assets/galeri-detail-preview (9).webp",
     ],
     title: "Kanopi",
@@ -64,8 +67,9 @@ const projects = [
       "Kami bersyukur bisa mempunyai kanopi dengan atap yang bagus (Alderon), sehingga tidak jadi penghalang jamaah untuk beribadah ke mesjid karena teras jadi aman dari hujan.",
   },
   {
+    thumbnail: "/assets/galeri-page (5).jpg",
     images: [
-      "/assets/galeri-page (5).jpg",
+      "/assets/galeri-detail-preview (7).webp",
       "/assets/galeri-detail-preview (6).webp",
     ],
     title: "Jendela",
@@ -77,8 +81,9 @@ const projects = [
       "Alhamdulillah... lalu pintu alumunium kamar mandi, jendela rumah sama pondok, semua dikerjakan kang haji ade, hasilnya baik, rapih.",
   },
   {
+    thumbnail: "/assets/galeri-page (4).jpg",
     images: [
-      "/assets/galeri-page (4).jpg",
+      "/assets/galeri-detail-preview (1).webp",
       "/assets/galeri-detail-preview (5).webp",
     ],
     title: "Custom Metalwork",
@@ -89,10 +94,11 @@ const projects = [
     testimonial:
       "Pekerjaan sangat presisi dan hasil akhirnya sesuai desain. Mandiri Teknik selalu bisa diandalkan.",
   },
-  
+
   {
+    thumbnail: "/assets/galeri (1).jpg",
     images: [
-      "/assets/galeri (1).jpg",
+      "/assets/galeri-detail-preview (10).webp",
       "/assets/galeri-detail-preview (4).webp",
     ],
     title: "Tangga",
@@ -103,7 +109,6 @@ const projects = [
     testimonial:
       "Tangga tampil mewah dan sangat aman. Semua sambungan halus dan presisi.",
   },
-  
 ];
 
 const fadeVariants: Variants = {
@@ -188,7 +193,7 @@ const GalleryPage = () => {
                 >
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
-                      src={p.images[0]}
+                      src={p.thumbnail}
                       alt={p.title}
                       loading="lazy"
                       decoding="async"
@@ -229,7 +234,7 @@ const GalleryPage = () => {
                 >
                   {/* 🖼️ SLIDER */}
                   <div className="relative w-full md:w-1/2 p-4 bg-white flex flex-col items-center justify-center">
-                    <div className="relative w-full h-[500px] md:h-[550px] bg-gray-100 rounded-xl overflow-hidden">
+                    <div className="relative w-full h-[400px] md:h-[550px] bg-gray-100 rounded-xl overflow-hidden">
                       <AnimatePresence mode="wait">
                         <motion.img
                           key={selectedProject.images[currentImage]}
@@ -314,3 +319,4 @@ const GalleryPage = () => {
 };
 
 export default memo(GalleryPage);
+
