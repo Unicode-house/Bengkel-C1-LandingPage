@@ -238,12 +238,18 @@ const GalleryPage = () => {
                       <AnimatePresence mode="wait">
                         <motion.div
                           key={selectedProject.images[currentImage]}
-                          drag="x"
-                          dragElastic={0.3} // 🔥 biar geseran fleksibel
+                          // 🧠 aktifin drag hanya di mobile
+                          drag={
+                            typeof window !== "undefined" &&
+                            window.innerWidth < 768
+                              ? "x"
+                              : false
+                          }
+                          dragElastic={0.3}
                           dragConstraints={{ left: 0, right: 0 }}
                           onDragEnd={(e, { offset, velocity }) => {
+                            if (window.innerWidth >= 768) return; // ❌ disable swipe di desktop
                             const swipe = offset.x * velocity.x;
-                            // geser kiri → next, geser kanan → prev
                             if (swipe < -10000) {
                               setCurrentImage((prev) =>
                                 prev === selectedProject.images.length - 1
@@ -271,6 +277,24 @@ const GalleryPage = () => {
                           />
                         </motion.div>
                       </AnimatePresence>
+
+                      {/* 🧭 Tombol prev/next hanya tampil di mode desktop */}
+                      {selectedProject.images.length > 1 && (
+                        <>
+                          <button
+                            onClick={handlePrevImage}
+                            className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-700 p-2 rounded-full shadow-md"
+                          >
+                            <ChevronLeft size={22} />
+                          </button>
+                          <button
+                            onClick={handleNextImage}
+                            className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-700 p-2 rounded-full shadow-md"
+                          >
+                            <ChevronRight size={22} />
+                          </button>
+                        </>
+                      )}
                     </div>
 
                     {/* 🔘 Dots Indicator */}
@@ -288,6 +312,7 @@ const GalleryPage = () => {
                       ))}
                     </div>
 
+                    {/* Tombol close mobile */}
                     <button
                       onClick={() => setSelectedProject(null)}
                       className="absolute top-3 right-3 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full shadow-sm md:hidden"
