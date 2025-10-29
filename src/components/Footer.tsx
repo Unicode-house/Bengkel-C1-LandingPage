@@ -7,7 +7,7 @@ import {
   Instagram,
   Youtube,
   MessageSquare,
-} from "lucide-react"; // 🧩 Tambahin icon media sosial
+} from "lucide-react"; // 🧩 Icon media sosial
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
 import engineeringImg from "/assets/logo-non-background.webp";
 
@@ -21,10 +21,19 @@ const menuItems = [
   { label: "Kontak", id: "contact" },
 ];
 
+const message = encodeURIComponent("Halo, saya tertarik dengan layanan Anda!");
+const waLink = `https://api.whatsapp.com/send?phone=628132147393&text=${message}`;
+
+console.log("isi wa:"+waLink)
+
+// const message = encodeURIComponent("Halo, saya tertarik dengan layanan Anda!");
+// const waLink = `https://wa.me/628132147393?text=${message}`;
+
+
 const contacts = [
   { icon: MapPin, text: "Alamat 1 - Jl. Merdeka No. 123, Bogor" },
-  { icon: MessageSquare, text: "____" },
-  { icon: Phone, text: "085323453369", link: "tel:085323453369" },
+  { icon: MessageSquare, text: "Hubungi via WhatsApp", link: waLink },
+  { icon: Phone, text: "+62 813-2147-393", link: waLink },
 ];
 
 // 🌐 Sosial Media
@@ -51,7 +60,6 @@ const socials = [
   },
 ];
 
-// ⚙️ Animation Variants
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
@@ -76,7 +84,7 @@ const Footer = () => {
     <footer className="bg-white border-t border-gray-200">
       <LazyMotion features={domAnimation}>
         <div className="container mx-auto px-4 py-16 grid md:grid-cols-3 gap-12">
-          {/* 🧩 Brand Info */}
+          {/* 🏗️ Brand Section */}
           <motion.div
             className="space-y-4 text-gray-700"
             variants={fadeUp}
@@ -86,7 +94,7 @@ const Footer = () => {
             custom={0}
           >
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center bg-white  w-[90px] h-[90px] ">
+              <div className="flex items-center justify-center bg-white w-[90px] h-[90px]">
                 <img
                   src={engineeringImg}
                   alt="Mandiri Teknik Hade Logo"
@@ -101,14 +109,13 @@ const Footer = () => {
             </div>
 
             <p className="text-sm text-gray-600 leading-relaxed">
-              Sejak 2009, kami telah melayani ribuan klien dengan dedikasi
-              penuh. Dari proyek rumah tinggal hingga bangunan komersial, kami
-              hadir sebagai mitra terpercaya Anda dalam mewujudkan konstruksi
+              Sejak 2009, kami telah melayani ribuan klien dengan dedikasi penuh.
+              Dari proyek rumah tinggal hingga bangunan komersial, kami hadir
+              sebagai mitra terpercaya Anda dalam mewujudkan konstruksi
               berkualitas dan profesional.
             </p>
           </motion.div>
 
-          {/* 🧭 Menu */}
           <motion.div
             className="space-y-4"
             variants={fadeUp}
@@ -149,6 +156,8 @@ const Footer = () => {
                   {item.link ? (
                     <a
                       href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="hover:text-[#05677E] transition-colors"
                     >
                       {item.text}
@@ -182,7 +191,7 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* ⚙️ Bottom Bar */}
         <motion.div
           className="bg-[#05677E] text-white text-sm"
           initial={{ opacity: 0, y: 20 }}
