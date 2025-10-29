@@ -55,7 +55,7 @@ const BookingForm = () => {
 
       setIsSubmitting(true);
 
-      const whatsappNumber = "6285156276912";
+      const whatsappNumber = "628132147393";
       const message = encodeURIComponent(
         `Halo, saya ingin booking layanan:\n\nNama: ${formData.name}\nNomor WA: ${formData.phone}\nLayanan: ${formData.service}\nCatatan: ${formData.notes || "-"}`
       );

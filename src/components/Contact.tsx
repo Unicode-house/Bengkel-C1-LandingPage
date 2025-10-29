@@ -13,8 +13,8 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Telepon",
-    content: "+62 851-5665-5145",
-    link: "tel:+6285156655145",
+    content: "+62 813-2147-393",
+    link: "tel:+62 813-2147-393",
   },
   {
     icon: Mail,

@@ -207,7 +207,7 @@ const Navbar = () => {
             <Button
               variant="hero"
               onClick={() =>
-                window.open("https://wa.me/6281234567890", "_blank")
+                window.open("https://wa.me/628132147393", "_blank")
               }
               className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#05677E] text-white hover:bg-[#344A52]"
             >
