@@ -21,13 +21,13 @@ const menuItems = [
   { label: "Kontak", id: "contact" },
 ];
 
-const message = encodeURIComponent("Halo, saya tertarik dengan layanan Anda!");
-const waLink = `https://api.whatsapp.com/send?phone=628132147393&text=${message}`;
-
-console.log("isi wa:"+waLink)
-
 // const message = encodeURIComponent("Halo, saya tertarik dengan layanan Anda!");
-// const waLink = `https://wa.me/628132147393?text=${message}`;
+// const waLink = `https://api.whatsapp.com/send?phone=628132147393&text=${message}`;
+
+
+const message = encodeURIComponent("Halo, saya tertarik dengan layanan Anda!");
+const waLink = `https://wa.me/628132147393?text=${message}`;
+console.log("isi wa:"+waLink)
 
 
 const contacts = [
