@@ -25,9 +25,9 @@ const contactInfo = [
 ];
 
 const socialMedia = [
-  { icon: Youtube, name: "YouTube", link: "#" },
-  { icon: SiTiktok, name: "TikTok", link: "#" },
-  { icon: Instagram, name: "Instagram", link: "#" },
+  { icon: Youtube, name: "YouTube", link: "https://youtube.com/@mandiritehniklaslistrik-pi7ip?si=OUc0rU3GHokfZgFK" },
+  { icon: SiTiktok, name: "TikTok", link: "https://www.tiktok.com/@bengkel.las.mandi86?_t=ZS-90foBLLR5E0&_r=1" },
+  { icon: Instagram, name: "Instagram", link: "https://www.instagram.com/bengkellasmandiritehnik" },
 ];
 
 const itemVariants: Variants = {

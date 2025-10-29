@@ -10,6 +10,8 @@ import {
 } from "lucide-react"; // 🧩 Icon media sosial
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
 import engineeringImg from "/assets/logo-non-background.webp";
+import { SiTiktok } from "react-icons/si";
+import { FaFacebook } from "react-icons/fa";
 
 const menuItems = [
   { label: "Home", id: "hero" },
@@ -36,11 +38,10 @@ const contacts = [
   { icon: Phone, text: "+62 813-2147-393", link: waLink },
 ];
 
-// 🌐 Sosial Media
 const socials = [
   {
     name: "Facebook",
-    icon: Facebook,
+    icon: FaFacebook,
     link: "https://www.facebook.com/share/176FrjUn4E/",
   },
   {
@@ -50,7 +51,7 @@ const socials = [
   },
   {
     name: "TikTok",
-    icon: MessageSquare,
+    icon: SiTiktok,
     link: "https://www.tiktok.com/@bengkel.las.mandi86?_t=ZS-90foBLLR5E0&_r=1",
   },
   {

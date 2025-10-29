@@ -33,7 +33,6 @@ const Navbar = () => {
   );
   const waLink = `https://wa.me/628132147393?text=${message}`;
 
-  // 🔁 Update ref biar gak trigger rerender terus
   useEffect(() => {
     activeRef.current = activeSection;
   }, [activeSection]);

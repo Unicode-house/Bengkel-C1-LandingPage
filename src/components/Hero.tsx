@@ -9,7 +9,6 @@ import { motion, LazyMotion, domAnimation } from "framer-motion";
 const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
 
-  // ✅ Deteksi layar mobile
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
@@ -17,7 +16,7 @@ const Hero = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const whatsappNumber = "6285156276912";
+  const whatsappNumber = "628132147393";
   const whatsappMessage = encodeURIComponent(
     "Halo, saya tertarik dengan layanan Mandiri Tehnik Hade"
   );
