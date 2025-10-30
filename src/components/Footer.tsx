@@ -33,7 +33,7 @@ console.log("isi wa:"+waLink)
 
 
 const contacts = [
-  { icon: MapPin, text: "Jl. Sirojul Munir Jl. Tarikolot, Nanggewer, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16912" },
+  { icon: MapPin, text: "Jl. Sirojul Munir Jl. Tarikolot, Nanggewer, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16912 " },
   { icon: MessageSquare, text: "Hubungi via WhatsApp", link: waLink },
   { icon: Phone, text: "+62 813-2147-393", link: waLink },
 ];
