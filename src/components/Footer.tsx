@@ -139,7 +139,6 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* 📞 Contact + Social */}
           <motion.div
             className="space-y-4"
             variants={fadeUp}
