@@ -23,16 +23,15 @@ const menuItems = [
   { label: "Kontak", id: "contact" },
 ];
 
-
-
-
 const message = encodeURIComponent("Halo, saya tertarik dengan layanan Anda!");
 const waLink = `https://wa.me/628132147393?text=${message}`;
-console.log("isi wa:"+waLink)
-
+console.log("isi wa:" + waLink);
 
 const contacts = [
-  { icon: MapPin, text: "Jl. Sirojul Munir Jl. Tarikolot, Nanggewer, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16912 " },
+  {
+    icon: MapPin,
+    text: "Jl. Sirojul Munir Jl. Tarikolot, Nanggewer, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16912 ",
+  },
   { icon: MessageSquare, text: "Hubungi via WhatsApp", link: waLink },
   { icon: Phone, text: "+62 813-2147-393", link: waLink },
 ];
@@ -100,6 +99,9 @@ const Footer = () => {
                   alt="Mandiri Teknik Hade Logo"
                   loading="lazy"
                   decoding="async"
+                  draggable={false}
+                  onDragStart={(e) => e.preventDefault()}
+                  onContextMenu={(e) => e.preventDefault()}
                   className="w-full h-full object-contain scale-110"
                 />
               </div>
@@ -109,9 +111,9 @@ const Footer = () => {
             </div>
 
             <p className="text-sm text-gray-600 leading-relaxed select-none">
-              Sejak 2009, kami telah melayani ribuan klien dengan dedikasi penuh.
-              Dari proyek rumah tinggal hingga bangunan komersial, kami hadir
-              sebagai mitra terpercaya Anda dalam mewujudkan konstruksi
+              Sejak 2009, kami telah melayani ribuan klien dengan dedikasi
+              penuh. Dari proyek rumah tinggal hingga bangunan komersial, kami
+              hadir sebagai mitra terpercaya Anda dalam mewujudkan konstruksi
               berkualitas dan profesional.
             </p>
           </motion.div>
@@ -124,7 +126,9 @@ const Footer = () => {
             viewport={{ once: true }}
             custom={1}
           >
-            <h4 className="text-lg font-bold text-[#05677E] select-none">Halaman</h4>
+            <h4 className="text-lg font-bold text-[#05677E] select-none">
+              Halaman
+            </h4>
             <ul className="space-y-2 text-gray-700">
               {menuItems.map((item) => (
                 <li key={item.id}>
@@ -147,7 +151,9 @@ const Footer = () => {
             viewport={{ once: true }}
             custom={2}
           >
-            <h4 className="text-lg font-bold text-[#05677E] select-none">Kontak</h4>
+            <h4 className="text-lg font-bold text-[#05677E] select-none">
+              Kontak
+            </h4>
             <ul className="space-y-3 text-gray-700">
               {contacts.map((item, index) => (
                 <li key={index} className="flex items-start gap-2">
