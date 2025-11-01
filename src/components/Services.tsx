@@ -90,7 +90,6 @@ const Services = () => {
   return (
     <section id="services" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        {/* ✅ LazyMotion biar FramerMotion load ringan */}
         <LazyMotion features={domAnimation}>
           {/* Header */}
           <motion.div
@@ -100,10 +99,10 @@ const Services = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary select-none pointer-events-none">
               Layanan Kami
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-[#05677E]">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-[#05677E] select-none pointer-events-none">
               Dari desain hingga instalasi, kami tawarkan solusi lengkap untuk
               kebutuhan konstruksi dan pengelasan Anda
             </p>
@@ -122,7 +121,7 @@ const Services = () => {
                 key={service.title}
                 className="bg-[#CFE6F0] p-8 rounded-xl shadow-card 
                            hover:shadow-xl transition-all duration-300 ease-out 
-                           hover:-translate-y-2 group cursor-pointer"
+                           hover:-translate-y-2 group cursor-pointer select-none"
                 variants={cardVariants}
               >
                 <div

@@ -33,7 +33,6 @@ const BookingForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  /* 🧠 Reusable handler untuk input change */
   const handleChange = useCallback(
     (field: string, value: string) => {
       setFormData((prev) => ({ ...prev, [field]: value }));
@@ -41,7 +40,6 @@ const BookingForm = () => {
     []
   );
 
-  /* ⚙️ Validasi & submit handler */
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
@@ -95,15 +93,14 @@ const BookingForm = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary select-none">
                 Booking Layanan
               </h2>
-              <p className="text-lg md:text-xl text-muted-foreground">
+              <p className="text-lg md:text-xl text-muted-foreground select-none">
                 Isi form di bawah untuk konsultasi gratis
               </p>
             </motion.div>
 
-            {/* 📝 Form */}
             <motion.form
               onSubmit={handleSubmit}
               className="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-lg space-y-6 border border-white/20 transform-gpu will-change-transform"
@@ -122,7 +119,7 @@ const BookingForm = () => {
                 custom={0}
               >
                 <Label htmlFor="name">
-                  Nama Lengkap <span className="text-error">*</span>
+                  Nama Lengkap <span className="text-error select-none">*</span>
                 </Label>
                 <Input
                   id="name"
@@ -169,7 +166,7 @@ const BookingForm = () => {
                 custom={2}
               >
                 <Label htmlFor="service">
-                  Jenis Layanan <span className="text-error">*</span>
+                  Jenis Layanan <span className="text-error select-none">*</span>
                 </Label>
                 <Select
                   value={formData.service}

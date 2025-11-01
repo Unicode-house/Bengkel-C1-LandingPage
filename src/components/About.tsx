@@ -4,7 +4,7 @@ import { Shield, Award, Lightbulb, Clock } from "lucide-react";
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
 import teamImage from "/assets/aboutus-image.webp";
 
-// 🧱 Data tetap di luar komponen agar gak re-create tiap render
+
 const values = [
   {
     icon: Shield,
@@ -62,10 +62,10 @@ const About = () => {
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary select-none pointer-events-none">
               Tentang Kami
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto select-none pointer-events-none">
               15+ tahun pengalaman di bidang konstruksi dan pengelasan
             </p>
           </motion.div>
@@ -79,10 +79,10 @@ const About = () => {
               whileInView="show"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h3 className="text-3xl font-semibold text-foreground">
+              <h3 className="text-3xl font-semibold text-foreground select-none pointer-events-none">
                 Mandiri Tehnik Hade
               </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-lg text-muted-foreground leading-relaxed select-none pointer-events-none">
                 Sejak 2009, kami telah melayani ribuan klien dengan dedikasi
                 penuh. Dari proyek rumah tinggal hingga bangunan komersial, kami
                 hadir sebagai mitra terpercaya Anda dalam mewujudkan konstruksi
@@ -124,7 +124,7 @@ const About = () => {
             {values.map((value) => (
               <motion.div
                 key={value.title}
-                className="p-6 shadow-card hover-lift text-center rounded-xl bg-[#F5FAFD]"
+                className="p-6 shadow-card hover-lift text-center rounded-xl bg-[#F5FAFD] select-none pointer-events-none"
                 variants={fadeUp}
               >
                 <value.icon className="h-12 w-12 mx-auto mb-4 text-accent" />

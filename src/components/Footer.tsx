@@ -103,12 +103,12 @@ const Footer = () => {
                   className="w-full h-full object-contain scale-110"
                 />
               </div>
-              <h3 className="text-2xl font-bold text-[#05677E] leading-snug tracking-tight">
+              <h3 className="text-2xl font-bold text-[#05677E] leading-snug tracking-tight select-none">
                 MANDIRI <br /> TEKNIK HADE
               </h3>
             </div>
 
-            <p className="text-sm text-gray-600 leading-relaxed">
+            <p className="text-sm text-gray-600 leading-relaxed select-none">
               Sejak 2009, kami telah melayani ribuan klien dengan dedikasi penuh.
               Dari proyek rumah tinggal hingga bangunan komersial, kami hadir
               sebagai mitra terpercaya Anda dalam mewujudkan konstruksi
@@ -124,7 +124,7 @@ const Footer = () => {
             viewport={{ once: true }}
             custom={1}
           >
-            <h4 className="text-lg font-bold text-[#05677E]">Halaman</h4>
+            <h4 className="text-lg font-bold text-[#05677E] select-none">Halaman</h4>
             <ul className="space-y-2 text-gray-700">
               {menuItems.map((item) => (
                 <li key={item.id}>
@@ -147,7 +147,7 @@ const Footer = () => {
             viewport={{ once: true }}
             custom={2}
           >
-            <h4 className="text-lg font-bold text-[#05677E]">Kontak</h4>
+            <h4 className="text-lg font-bold text-[#05677E] select-none">Kontak</h4>
             <ul className="space-y-3 text-gray-700">
               {contacts.map((item, index) => (
                 <li key={index} className="flex items-start gap-2">
@@ -169,7 +169,7 @@ const Footer = () => {
             </ul>
 
             <div className="pt-4">
-              <h4 className="text-lg font-bold text-[#05677E] mb-2">
+              <h4 className="text-lg font-bold text-[#05677E] mb-2 select-none">
                 Sosial Media
               </h4>
               <div className="flex flex-wrap gap-4">
@@ -199,17 +199,17 @@ const Footer = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <div className="container mx-auto px-4 py-4 text-center space-y-2">
-            <div className="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4 select-none">
               <p>© {currentYear} Mandiri Tehnik Hade</p>
               <span className="hidden md:inline">|</span>
               <p>Dibuat oleh MTH Team</p>
             </div>
             <div className="flex justify-center items-center gap-4">
-              <a href="#" className="hover:underline">
+              <a href="#" className="hover:underline select-none">
                 Legalitas
               </a>
               <span>|</span>
-              <a href="#" className="hover:underline">
+              <a href="#" className="hover:underline select-none">
                 Privacy Policy
               </a>
             </div>

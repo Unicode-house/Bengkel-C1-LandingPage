@@ -73,15 +73,14 @@ const Testimonials = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary select-none">
               Testimoni Klien
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto select-none">
               Kepercayaan klien adalah prioritas kami
             </p>
           </motion.div>
 
-          {/* Carousel */}
           <Carousel
             opts={{
               align: "start",
@@ -102,9 +101,9 @@ const Testimonials = () => {
                     viewport={{ once: true, amount: 0.2 }}
                   >
                     <Card className="h-full shadow-card hover-lift rounded-xl focus:outline-none focus:ring-0">
-                      <CardContent className="p-6 flex flex-col h-full bg-[#F5FAFD] rounded-xl">
+                      <CardContent className="p-6 flex flex-col h-full bg-[#F5FAFD] rounded-xl ">
                         {/* ⭐ Rating */}
-                        <div className="flex gap-1 mb-4">
+                        <div className="flex gap-1 mb-4 select-none">
                           {Array.from({ length: testimonial.rating }).map(
                             (_, i) => (
                               <Star
@@ -116,16 +115,16 @@ const Testimonials = () => {
                         </div>
 
                         {/* 💬 Comment */}
-                        <p className="text-muted-foreground mb-6 flex-grow italic leading-relaxed">
+                        <p className="text-muted-foreground mb-6 flex-grow italic leading-relaxed select-none">
                           “{testimonial.comment}”
                         </p>
 
                         {/* 👤 Author */}
                         <div>
-                          <p className="font-semibold text-card-foreground">
+                          <p className="font-semibold text-card-foreground select-none">
                             {testimonial.name}
                           </p>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-sm text-muted-foreground select-none">
                             {testimonial.role}
                           </p>
                         </div>

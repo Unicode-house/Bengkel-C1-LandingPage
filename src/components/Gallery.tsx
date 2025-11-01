@@ -48,7 +48,7 @@ const Gallery = () => {
   return (
     <section id="gallery" className="min-h-screen py-20 bg-background">
       <div className="container mx-auto px-4">
-        {/* ✅ LazyMotion biar FramerMotion gak load semua fitur */}
+
         <LazyMotion features={domAnimation}>
           {/* Header */}
           <motion.div
@@ -58,10 +58,10 @@ const Gallery = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary select-none pointer-events-none">
               Galeri Proyek
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto select-none pointer-events-none">
               Hasil karya kami yang telah dipercaya oleh ratusan klien
             </p>
           </motion.div>
@@ -84,7 +84,7 @@ const Gallery = () => {
             {projects.map((project) => (
               <motion.div
                 key={project.title}
-                className="group relative overflow-hidden rounded-xl shadow-card hover-lift"
+                className="group relative overflow-hidden rounded-xl shadow-card hover-lift select-none"
                 variants={cardVariants}
               >
                 <div className="aspect-[4/3] overflow-hidden">

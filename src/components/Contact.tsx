@@ -52,10 +52,10 @@ const Contact = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary select-none">
               Kontak Kami
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto select-none">
               Hubungi kami untuk konsultasi gratis
             </p>
           </motion.div>
@@ -102,7 +102,7 @@ const Contact = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <h3 className="font-semibold text-lg mb-4 text-card-foreground">
+                <h3 className="font-semibold text-lg mb-4 text-card-foreground select-none">
                   Media Sosial
                 </h3>
                 <div className="flex gap-4">

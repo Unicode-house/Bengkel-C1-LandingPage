@@ -8,7 +8,6 @@ import { motion, LazyMotion, domAnimation } from "framer-motion";
 
 const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
@@ -21,7 +20,6 @@ const Hero = () => {
     "Halo, saya tertarik dengan layanan Mandiri Tehnik Hade"
   );
 
-  // ✅ Fungsi WhatsApp
   const handleWhatsAppClick = useCallback(() => {
     window.open(
       `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`,
@@ -29,7 +27,6 @@ const Hero = () => {
     );
   }, [whatsappNumber, whatsappMessage]);
 
-  // ✅ Scroll ke section layanan
   const scrollToServices = useCallback(() => {
     document
       .getElementById("services")
@@ -42,7 +39,6 @@ const Hero = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden isolate"
     >
       <LazyMotion features={domAnimation}>
-        {/* ✅ Background utama */}
         <motion.div className="absolute inset-0 z-0">
           <img
             src={heroImage}
@@ -52,8 +48,6 @@ const Hero = () => {
             decoding="async"
             onContextMenu={(e) => e.preventDefault()}
           />
-
-          {/* ✅ Overlay adaptif: lebih gelap di mobile, tipis di web */}
           <div
             className={`absolute inset-0 z-0 ${
               isMobile
@@ -63,19 +57,21 @@ const Hero = () => {
           ></div>
         </motion.div>
 
-        {/* ✅ Konten utama */}
         <div className="container mx-auto px-4 py-20 relative z-20 text-center text-white">
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-white "
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-white select-none pointer-events-none "
             initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
+            onCopy={(e)=> e.preventDefault()}
+            onCut={(e) => e.preventDefault()}
+            onContextMenu={(e) => e.preventDefault()}
+            onSelect={(e) => e.preventDefault()}
           >
             Solusi Konstruksi & Pengelasan Terpercaya Sejak 2009
           </motion.h1>
-
           <motion.p
-            className="text-base sm:text-lg md:text-2xl mb-8 text-white/95 drop-shadow-[0_3px_6px_rgba(0,0,0,0.8)]"
+            className="text-base sm:text-lg md:text-2xl mb-8 text-white/95 drop-shadow-[0_3px_6px_rgba(0,0,0,0.8)] select-none pointer-events-none"
             initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
@@ -83,14 +79,12 @@ const Hero = () => {
             Berkualitas, Amanah, dan Profesional dalam setiap proyek.
           </motion.p>
 
-          {/* ✅ Tombol CTA */}
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           >
-            {/* Tombol WhatsApp */}
             <Button
               size="lg"
               onClick={handleWhatsAppClick}

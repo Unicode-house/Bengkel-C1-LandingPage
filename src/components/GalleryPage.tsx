@@ -122,7 +122,6 @@ const GalleryPage = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [currentImage, setCurrentImage] = useState(0);
 
-  // ⚡ useMemo → gak re-filter tiap render
   const filteredProjects = useMemo(() => {
     return activeCategory === "Semua"
       ? projects
@@ -155,13 +154,12 @@ const GalleryPage = () => {
         className="pt-32 pb-20 bg-gray-50 min-h-screen"
       >
         <div className="container mx-auto px-4">
-          {/* Filter Buttons */}
-          <div className="flex overflow-x-auto whitespace-nowrap mb-5 gap-3 scrollbar-hide">
+          <div className="flex overflow-x-auto whitespace-nowrap mb-5 gap-3 scrollbar-hide scroll-smooth snap-x snap-mandatory">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full border text-sm transition-all duration-300 ${
+                className={`px-4 py-2 rounded-full border text-sm snap-start shrink-0 transition-all duration-300 ${
                   activeCategory === cat
                     ? "bg-[#05677E] text-white border-[#05677E] shadow-md"
                     : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
@@ -213,8 +211,6 @@ const GalleryPage = () => {
             </motion.div>
           </AnimatePresence>
         </div>
-
-        {/* 🧩 MODAL DETAIL */}
         <AnimatePresence>
           {selectedProject && (
             <motion.div
@@ -238,7 +234,6 @@ const GalleryPage = () => {
                       <AnimatePresence mode="wait">
                         <motion.div
                           key={selectedProject.images[currentImage]}
-                          // 🧠 aktifin drag hanya di mobile
                           drag={
                             typeof window !== "undefined" &&
                             window.innerWidth < 768
@@ -248,7 +243,7 @@ const GalleryPage = () => {
                           dragElastic={0.3}
                           dragConstraints={{ left: 0, right: 0 }}
                           onDragEnd={(e, { offset, velocity }) => {
-                            if (window.innerWidth >= 768) return; // ❌ disable swipe di desktop
+                            if (window.innerWidth >= 768) return;
                             const swipe = offset.x * velocity.x;
                             if (swipe < -10000) {
                               setCurrentImage((prev) =>

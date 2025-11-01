@@ -18,7 +18,6 @@ const Values = () => {
   return (
     <section className="py-20 relative overflow-hidden">
       <LazyMotion features={domAnimation}>
-        {/* 🖼️ Background Image with animation */}
         <motion.div
           className="absolute inset-0 will-change-transform"
           style={{
@@ -35,7 +34,6 @@ const Values = () => {
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
         </motion.div>
 
-        {/* ✅ Preload hidden image for LCP optimization */}
         <img
           src={valuesBg}
           alt="Background Values"
@@ -49,10 +47,9 @@ const Values = () => {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* 🧩 Left content */}
             <div className="text-white space-y-6">
               <motion.h2
-                className="text-4xl md:text-5xl font-bold mb-6"
+                className="text-4xl md:text-5xl font-bold mb-6 select-none"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -65,7 +62,7 @@ const Values = () => {
                 {companyValues.map((value, index) => (
                   <motion.div
                     key={value}
-                    className="flex items-center gap-4"
+                    className="flex items-center gap-4 select-none"
                     variants={listVariants}
                     initial="hidden"
                     whileInView="visible"
@@ -88,11 +85,11 @@ const Values = () => {
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
               <blockquote className="text-white">
-                <p className="text-xl md:text-2xl font-light leading-relaxed italic mb-4">
+                <p className="text-xl md:text-2xl font-light leading-relaxed italic mb-4 select-none">
                   “Dengan semangat yang kuat dan niat yang tulus, kami menciptakan
                   solusi kreatif dan menjaga profesionalisme demi kemajuan bersama.”
                 </p>
-                <footer className="text-accent font-semibold">
+                <footer className="text-accent font-semibold select-none">
                   — Mandiri Tehnik Hade
                 </footer>
               </blockquote>

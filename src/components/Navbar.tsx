@@ -137,14 +137,14 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 select-none pointer-events-none">
           {/* Logo */}
           <div
             className={`font-bold text-[#05677E] transition-all duration-300 ${
               isScrolled ? "text-xl" : "text-2xl"
             }`}
           >
-            <span className="text-[#5A5C7E]">MTH</span> Mandiri Tehnik Hade
+            <span className="text-[#5A5C7E] select-none pointer-events-none">MTH</span> Mandiri Tehnik Hade
           </div>
 
           {/* Desktop Menu */}
