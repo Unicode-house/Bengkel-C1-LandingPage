@@ -1,12 +1,11 @@
 <!doctype html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-  <!-- ✅ Aman untuk embed Google Maps & YouTube -->
+  <!-- ⚙️ Security Headers (sinkron sama vercel.json, aman buat Maps & YouTube) -->
   <meta http-equiv="Content-Security-Policy"
     content="
       default-src 'self';
@@ -19,17 +18,14 @@
       frame-ancestors 'self' https://www.google.com https://maps.google.com https://www.youtube.com;
       base-uri 'self';
       form-action 'self';
-      upgrade-insecure-requests;">
-  
-  <!-- ⚙️ Security Headers (jangan blok iframe) -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="ALLOWALL">
+      upgrade-insecure-requests;" />
 
-  <title>
-    Mandiri Tehnik Hade - Solusi Konstruksi & Pengelasan Terpercaya Sejak 2009
-  </title>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="ALLOWALL" />
 
-  <!-- ✅ SEO & Meta -->
+  <title>Mandiri Tehnik Hade - Solusi Konstruksi & Pengelasan Terpercaya Sejak 2009</title>
+
+  <!-- ✅ SEO -->
   <meta name="description"
     content="Berkualitas, Amanah, dan Profesional dalam setiap proyek konstruksi dan pengelasan sejak 2009. Layanan pagar besi, renovasi, kanopi, dan folding gate." />
   <meta name="author" content="Mandiri Tehnik Hade" />
@@ -44,32 +40,31 @@
   <meta name="twitter:description"
     content="Berkualitas, Amanah, dan Profesional dalam setiap proyek konstruksi dan pengelasan sejak 2009." />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/LOGONAV.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/LOGONAV.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/LOGONAV.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <!-- ✅ Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/LOGONAV.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/LOGONAV.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/LOGONAV.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- ✅ Critical Preloads -->
+  <!-- ✅ Preloads -->
   <link rel="preload" as="image" href="/assets/hero-construction.webp" />
   <link rel="preload" as="style" href="/assets/index-qlCedMKY.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- ✅ Non-blocking Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"
-    media="print" onload="this.media='all'" />
+  <!-- ✅ Google Fonts (non-blocking) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet" />
   </noscript>
 
+  <!-- ✅ Styles -->
   <link rel="stylesheet" href="/assets/index-qlCedMKY.css" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="/assets/index-qlCedMKY.css" /></noscript>
 
-  <!-- ✅ Favicon -->
-  <link rel="icon" type="image/png" href="/favicon.png" />
-
-  <!-- ✅ Performance Hints -->
+  <!-- ✅ Performance -->
   <meta http-equiv="x-dns-prefetch-control" content="on" />
   <link rel="dns-prefetch" href="//fonts.googleapis.com" />
   <link rel="dns-prefetch" href="//fonts.gstatic.com" />
@@ -80,5 +75,4 @@
   <div id="root"></div>
   <script type="module" src="/src/main.tsx" defer></script>
 </body>
-
 </html>
