@@ -187,7 +187,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:text-[#05677E] transition-colors"
                   >
-                    <social.icon className="h-5 w-5" />
+                    <social.icon className="h-5 w-5 text-[#05677E]" />
                     <span className="text-sm">{social.name}</span>
                   </a>
                 ))}
