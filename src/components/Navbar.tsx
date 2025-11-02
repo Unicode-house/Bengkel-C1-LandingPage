@@ -27,24 +27,19 @@ const Navbar = () => {
     { label: "Kontak", id: "contact" },
   ];
 
-  // 💬 Chat otomatis WhatsApp
-  const message = encodeURIComponent(
-    "Halo, saya tertarik dengan layanan Anda!"
-  );
+  const message = encodeURIComponent("Halo, saya tertarik dengan layanan Anda!");
   const waLink = `https://wa.me/628132147393?text=${message}`;
 
   useEffect(() => {
     activeRef.current = activeSection;
   }, [activeSection]);
 
-  // 🔧 Cache element refs sekali aja
   useEffect(() => {
     menuItems.forEach((item) => {
       sectionRefs.current[item.id] = document.getElementById(item.id);
     });
   }, []);
 
-  // 🔥 Handle scroll + intersection observer
   useEffect(() => {
     if (location.pathname === "/projects") {
       setActiveSection("gallery");
@@ -90,7 +85,6 @@ const Navbar = () => {
     };
   }, [location.pathname]);
 
-  // 🚀 Smooth scroll ke section
   const scrollToSection = (sectionId: string) => {
     if (location.pathname !== "/") {
       navigate("/");
@@ -110,7 +104,6 @@ const Navbar = () => {
     }
   };
 
-  // 🧭 Scroll otomatis ke target setelah navigate
   useEffect(() => {
     if (location.pathname === "/") {
       const target = localStorage.getItem("scrollTarget");
@@ -144,7 +137,10 @@ const Navbar = () => {
               isScrolled ? "text-xl" : "text-2xl"
             }`}
           >
-            <span className="text-[#5A5C7E] select-none pointer-events-none">MTH</span> Mandiri Tehnik Hade
+            <span className="text-[#5A5C7E] select-none pointer-events-none">
+              MTH
+            </span>{" "}
+            Mandiri Tehnik Hade
           </div>
 
           {/* Desktop Menu */}
@@ -153,10 +149,10 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`transition-colors duration-300 relative text-sm font-bold ${
+                className={`transition-all duration-300 relative font-semibold ${
                   activeSection === item.id
-                    ? "text-black font-bold after:content-[''] after:block after:w-full after:h-[2px] after:bg-accent after:mt-1 "
-                    : "text-[#05677E] hover:text-accent font-semibold "
+                    ? "text-black text-[14px] after:content-[''] after:block after:w-full after:h-[2px] after:bg-accent after:mt-1"
+                    : "text-[#05677E] hover:text-accent text-[11px]"
                 }`}
               >
                 {item.label}
@@ -196,10 +192,10 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`transition-colors duration-300 text-left py-2 font-medium ${
+                className={`transition-all duration-300 text-left py-2 font-semibold ${
                   activeSection === item.id
-                    ? "text-black font-bold underline"
-                    : "text-[#05677E] hover:text-accent"
+                    ? "text-black text-[14px] underline"
+                    : "text-[#05677E] hover:text-accent text-[11px]"
                 }`}
               >
                 {item.label}
