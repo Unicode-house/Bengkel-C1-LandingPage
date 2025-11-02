@@ -137,7 +137,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20 select-none pointer-events-none">
+        <div className="flex items-center justify-between h-20 select-none">
           {/* Logo */}
           <div
             className={`font-bold text-[#05677E] transition-all duration-300 ${
