@@ -153,10 +153,10 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`transition-colors duration-300 relative text-sm font-medium ${
+                className={`transition-colors duration-300 relative text-sm font-bold ${
                   activeSection === item.id
-                    ? "text-black font-bold after:content-[''] after:block after:w-full after:h-[2px] after:bg-accent after:mt-1"
-                    : "text-[#05677E] hover:text-accent"
+                    ? "text-black font-bold after:content-[''] after:block after:w-full after:h-[2px] after:bg-accent after:mt-1 "
+                    : "text-[#05677E] hover:text-accent font-semibold "
                 }`}
               >
                 {item.label}
