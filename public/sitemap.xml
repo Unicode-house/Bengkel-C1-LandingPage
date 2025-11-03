@@ -3,6 +3,45 @@
   <url>
     <loc>https://bengkel-landing-page.vercel.app/</loc>
     <lastmod>2025-11-01</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://bengkel-landing-page.vercel.app/layanan</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://bengkel-landing-page.vercel.app/galeri</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://bengkel-landing-page.vercel.app/tentang-kami</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 📞 Kontak -->
+  <url>
+    <loc>https://bengkel-landing-page.vercel.app/kontak</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://bengkel-landing-page.vercel.app/assets/hero-construction.webp</loc>
+    <lastmod>2025-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://bengkel-landing-page.vercel.app/assets/LOGONAV.png</loc>
+    <lastmod>2025-11-01</lastmod>
   </url>
 </urlset>
