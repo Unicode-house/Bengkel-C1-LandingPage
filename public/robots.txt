@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://bengkel-landing-page.vercel.app/sitemap.xml
