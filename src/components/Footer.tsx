@@ -7,6 +7,7 @@ import {
   Instagram,
   Youtube,
   MessageSquare,
+  Mail,
 } from "lucide-react"; // 🧩 Icon media sosial
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
 import engineeringImg from "/assets/logo-non-background.webp";
@@ -32,7 +33,7 @@ const contacts = [
     icon: MapPin,
     text: "Jl. Sirojul Munir Jl. Tarikolot, Nanggewer, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16912 ",
   },
-  { icon: MessageSquare, text: "_______", link: waLink },
+  { icon: Mail, text: "admin@mandiritehnikhade.com", link: waLink },
   { icon: Phone, text: "+62 813-2147-393", link: waLink },
 ];
 
