@@ -19,8 +19,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    content: "info@mandiritehnikhade.com",
-    link: "mailto:info@mandiritehnikhade.com",
+    content: "admin@mandiritehnikhade.com",
+    link: "mailto:admin@mandiritehnikhade.com",
   },
 ];
 

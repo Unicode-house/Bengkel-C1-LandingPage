@@ -203,8 +203,6 @@ const BookingForm = () => {
                   </SelectContent>
                 </Select>
               </motion.div>
-
-              {/* Catatan */}
               <motion.div
                 className="space-y-2"
                 variants={fieldVariants}
@@ -224,7 +222,7 @@ const BookingForm = () => {
                 />
               </motion.div>
 
-              {/* Submit Button */}
+              
               <motion.div
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
                 whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
