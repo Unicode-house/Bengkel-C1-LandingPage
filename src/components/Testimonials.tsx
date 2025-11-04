@@ -14,38 +14,52 @@ import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
 // 🧱 Static data di luar komponen biar gak re-create tiap render
 const testimonials = [
   {
-    name: "Bpk. H. Eko Santoso",
-    role: "Pemilik Rumah",
+    name: "Bpk. Kaimudin (Rektor STITSIFA)",
+    proyek: "Pekerjaan Perbesian di Kampus STITSIFA",
     comment:
-      "Pekerjaan pagar dan kanopi sangat rapi dan profesional. Timnya ramah dan hasilnya melebihi ekspektasi. Highly recommended!",
+      "Mandiri Tehnik bekerja dengan profesional dan hasilnya rapi serta kuat. Kolaborasi berjalan lancar, penuh komunikasi dan saling percaya. Kami sangat puas dan akan terus mempercayakan proyek perbesian kampus kepada Mandiri Tehnik.",
     rating: 5,
   },
   {
-    name: "Bpk. Munin Niin",
-    role: "Pengusaha",
+    name: "Bpk. Kino ",
+    proyek: "Proyek Pekerjaan Besi",
     comment:
-      "Sudah beberapa kali menggunakan jasa MTH untuk proyek renovasi. Selalu puas dengan kualitas dan ketepatan waktu.",
+      "Ade orangnya terbuka dan cepat tanggap terhadap masukan. Timnya solid, hasil pekerjaan rapi, dan komunikasinya lancar. Walau jadwal padat, semua selesai tepat waktu dengan hasil memuaskan.",
     rating: 5,
   },
   {
-    name: "Ibu Siti Nurhaliza",
-    role: "Arsitek",
+    name: "Bpk. H. Dedi ",
+    proyek: "Pintu Gerbang & Folding Gate",
     comment:
-      "Kerjasama yang sangat baik. Tim MTH paham detail teknis dan memberikan solusi terbaik untuk setiap proyek.",
+      "Mandiri Tehnik memberikan hasil yang rapi, detail, dan kokoh. Timnya profesional dan tanggap terhadap perubahan di lapangan. Kualitas pengerjaan benar-benar di atas ekspektasi kami.",
+    rating: 4,
+  },
+  {
+    name: "Bang Hafiz Nugraha",
+    proyek: "Pintu Dorong & Pintu Sliding Garasi",
+    comment:
+      "Kang Haji dikenal disiplin dan hasil kerjanya selalu memuaskan. Pintu dorong dan sliding garasi dikerjakan dengan presisi dan tampilan yang keren. Pelayanan cepat, hasilnya juga tahan lama.",
     rating: 5,
   },
   {
-    name: "Bpk. Ahmad Fauzi",
-    role: "Developer",
+    name: "Aby H. Ahmad ",
+    proyek: "Reling Tangga Stainless, Pintu & Jendela",
     comment:
-      "Pelayanan cepat, harga kompetitif, dan hasil memuaskan. Akan terus bekerja sama untuk proyek-proyek berikutnya.",
+      "Pekerjaan Mandiri Tehnik selalu rapi dan berkualitas tinggi. Dari reling tangga, pintu, hingga jendela, semuanya dikerjakan dengan hasil sempurna. Semoga terus diberkahi kesuksesan.",
+    rating: 4,
+  },
+  {
+    name: "Bpk. H. Munin Niin, S.E.",
+    proyek: "Pembangunan Aula Pernikahan",
+    comment:
+      "Desain aula dikerjakan dengan hasil memuaskan dan kokoh. Walau dengan budget terbatas, hasil akhirnya tetap luar biasa. Bangunannya masih awet dan terawat sampai sekarang.",
     rating: 5,
   },
   {
-    name: "Ibu Ratna Dewi",
-    role: "Pemilik Toko",
+    name: "Bpk. H. Eko ",
+    proyek: "Pembuatan Pintu Lipat",
     comment:
-      "Folding gate yang dipasang sangat berkualitas. Pemasangannya cepat dan rapi. Terima kasih MTH!",
+      "Om Haji orangnya ramah dan pekerjaannya sangat rapi. Harga bersahabat tapi hasilnya luar biasa kuat dan presisi. Pintu lipat yang dibuat masih awet dan mulus hingga kini.",
     rating: 5,
   },
 ];
@@ -101,7 +115,12 @@ const Testimonials = () => {
                     viewport={{ once: true, amount: 0.2 }}
                   >
                     <Card className="h-full shadow-card hover-lift rounded-xl focus:outline-none focus:ring-0">
-                      <CardContent className="p-6 flex flex-col h-full bg-[#F5FAFD] rounded-xl ">
+                      <CardContent
+                        className="
+      p-6 flex flex-col justify-between   /* 🔧 biar elemen dalamnya keisi vertikal penuh */
+      h-full bg-[#F5FAFD] rounded-xl min-h-[280px] /* 🔧 kasih min-height tetap */
+    "
+                      >
                         {/* ⭐ Rating */}
                         <div className="flex gap-1 mb-4 select-none">
                           {Array.from({ length: testimonial.rating }).map(
@@ -115,17 +134,24 @@ const Testimonials = () => {
                         </div>
 
                         {/* 💬 Comment */}
-                        <p className="text-muted-foreground mb-6 flex-grow italic leading-relaxed select-none">
+                        <p
+                          className="
+        text-muted-foreground italic leading-relaxed select-none
+        flex-grow mb-6 line-clamp-5  /* 🔧 biar maksimal 5 baris aja (optional) */
+      "
+                        >
                           “{testimonial.comment}”
                         </p>
 
                         {/* 👤 Author */}
-                        <div>
+                        <div className="mt-auto">
+                          {" "}
+                          {/* 🔧 push ke bawah */}
                           <p className="font-semibold text-card-foreground select-none">
                             {testimonial.name}
                           </p>
                           <p className="text-sm text-muted-foreground select-none">
-                            {testimonial.role}
+                            {testimonial.proyek}
                           </p>
                         </div>
                       </CardContent>

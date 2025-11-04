@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle, ChevronDown } from "lucide-react";
 import heroImage from "/assets/image-hero.jpg";
 import { motion, LazyMotion, domAnimation } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -63,7 +64,7 @@ const Hero = () => {
             initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            onCopy={(e)=> e.preventDefault()}
+            onCopy={(e) => e.preventDefault()}
             onCut={(e) => e.preventDefault()}
             onContextMenu={(e) => e.preventDefault()}
             onSelect={(e) => e.preventDefault()}
@@ -88,19 +89,20 @@ const Hero = () => {
             <Button
               size="lg"
               onClick={handleWhatsAppClick}
-              className="text-base sm:text-lg px-6 sm:px-8 py-5 h-auto 
-                         bg-[hsl(var(--tertiary))] 
-                         text-[hsl(var(--on-tertiary))] 
-                         border border-[hsl(var(--tertiary))] 
-                         hover:bg-[hsl(var(--on-tertiary-container))] 
-                         hover:text-white 
-                         transition rounded-xl shadow-md w-full sm:w-auto"
+              className="flex items-center justify-center gap-3 text-base sm:text-lg px-6 sm:px-8 py-5 h-auto 
+             bg-[hsl(var(--tertiary))] 
+             text-[hsl(var(--on-tertiary))] 
+             border border-[hsl(var(--tertiary))] 
+             hover:bg-[hsl(var(--on-tertiary-container))] 
+             hover:text-white 
+             transition rounded-xl shadow-md w-full sm:w-auto"
             >
-              <MessageCircle className="mr-2 h-5 w-5" />
-              Hubungi via WhatsApp
+              <FaWhatsapp className="!text-5xl text-white" />
+              <span className="text-base sm:text-lg font-semibold">
+                Hubungi via WhatsApp
+              </span>
             </Button>
 
-            {/* Tombol scroll */}
             <Button
               size="lg"
               onClick={scrollToServices}
