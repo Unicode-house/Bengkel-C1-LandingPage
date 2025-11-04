@@ -133,11 +133,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20 select-none">
           {/* Logo */}
           <div
+          onClick={() => navigate("/")}
             className={`font-bold text-[#05677E] transition-all duration-300 ${
               isScrolled ? "text-xl" : "text-2xl"
             }`}
           >
-            <span className="text-[#5A5C7E] select-none pointer-events-none">
+            <span className="text-[#5A5C7E] select-none ">
               MTH
             </span>{" "}
             Mandiri Tehnik Hade
