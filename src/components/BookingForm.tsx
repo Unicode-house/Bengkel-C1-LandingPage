@@ -33,12 +33,9 @@ const BookingForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = useCallback(
-    (field: string, value: string) => {
-      setFormData((prev) => ({ ...prev, [field]: value }));
-    },
-    []
-  );
+  const handleChange = useCallback((field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  }, []);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -55,7 +52,11 @@ const BookingForm = () => {
 
       const whatsappNumber = "628132147393";
       const message = encodeURIComponent(
-        `Halo, saya ingin booking layanan:\n\nNama: ${formData.name}\nNomor WA: ${formData.phone}\nLayanan: ${formData.service}\nCatatan: ${formData.notes || "-"}`
+        `Halo, saya ingin booking layanan:\n\nNama: ${
+          formData.name
+        }\nNomor WA: ${formData.phone}\nLayanan: ${
+          formData.service
+        }\nCatatan: ${formData.notes || "-"}`
       );
 
       toast.success("Mengarahkan ke WhatsApp...");
@@ -104,7 +105,9 @@ const BookingForm = () => {
             <motion.form
               onSubmit={handleSubmit}
               className="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-lg space-y-6 border border-white/20 transform-gpu will-change-transform"
-              initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.95 }}
+              initial={
+                prefersReducedMotion ? false : { opacity: 0, scale: 0.95 }
+              }
               whileInView={prefersReducedMotion ? {} : { opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut" }}
@@ -166,7 +169,8 @@ const BookingForm = () => {
                 custom={2}
               >
                 <Label htmlFor="service">
-                  Jenis Layanan <span className="text-error select-none">*</span>
+                  Jenis Layanan{" "}
+                  <span className="text-error select-none">*</span>
                 </Label>
                 <Select
                   value={formData.service}
@@ -182,11 +186,20 @@ const BookingForm = () => {
                     sideOffset={5}
                     className="rounded-xl shadow-lg bg-white"
                   >
-                    <SelectItem value="pagar">Pagar & Pintu Besi</SelectItem>
-                    <SelectItem value="renovasi">Renovasi Bangunan</SelectItem>
-                    <SelectItem value="kanopi">Kanopi & Tralis</SelectItem>
-                    <SelectItem value="folding">Folding Gate / Pintu Alumunium</SelectItem>
-                    <SelectItem value="lainnya">Lainnya</SelectItem>
+                    <SelectItem value="pagar & tralis">Pagar & Tralis</SelectItem>
+                    <SelectItem value="bangun baru & renovasi">
+                      Bangun Baru & Renovasi
+                    </SelectItem>
+                    <SelectItem value="kanopi">Kanopi </SelectItem>
+                    <SelectItem value="Rolling Door & Folding Gate">
+                      Rolling Door & Folding Gate{" "}
+                    </SelectItem>
+                    <SelectItem value="Pintu Dorong & swing">Pintu Dorong & swing</SelectItem>
+                    <SelectItem value="Kusen Pintu & Jendela Aluminium">Kusen Pintu & Jendela Aluminium</SelectItem>
+                    <SelectItem value="Relling Tangga & Balkon">
+                      Relling Tangga & Balkon
+                    </SelectItem>
+                    <SelectItem value="Custom Metalwork">Custom Metalwork</SelectItem>
                   </SelectContent>
                 </Select>
               </motion.div>
