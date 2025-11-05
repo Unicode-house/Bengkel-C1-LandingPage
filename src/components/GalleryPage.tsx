@@ -103,7 +103,7 @@ const projects = [
     ],
     title: "Tangga",
     location: "Depok, Jawa Barat",
-    category: "Pagar & Trails",
+    category: "Relling Tangga & Balkon",
     detail:
       "Railing tangga modern dari kombinasi stainless steel dan kaca tempered 10mm. Fokus pengerjaan pada kekuatan struktur dan tampilan elegan.",
     testimonial:
@@ -228,7 +228,6 @@ const GalleryPage = () => {
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
                 >
-                  {/* 🖼️ SLIDER */}
                   <div className="relative w-full md:w-1/2 p-4 bg-white flex flex-col items-center justify-center select-none">
                     <div className="relative w-full h-[400px] md:h-[550px] bg-gray-100 rounded-xl overflow-hidden">
                       <AnimatePresence mode="wait">
