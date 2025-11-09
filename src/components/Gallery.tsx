@@ -12,13 +12,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-// 🧱 Static data
 const projects = [
   {
     title: "Tangga Stainless Steel",
     location: "Bogor",
     description: "Tangga modern dengan railing stainless steel",
     thumbnail: "/assets/galeri (1).jpg",
+    type: "Reling Tangga & Balkon",
     images: [
       "/assets/galeri (1).jpg",
       "/assets/galeri-detail-preview (10).webp",
@@ -33,6 +33,8 @@ const projects = [
     location: "Jakarta",
     description: "Jendela rumah dengan kusen aluminium tahan lama",
     thumbnail: "/assets/galeri (2).jpg",
+    type: "Kusen, Pintu & Jendela Aluminium",
+
     images: [
       "/assets/galeri (2).jpg",
       "/assets/galeri-detail-preview (6).webp",
@@ -47,6 +49,7 @@ const projects = [
     location: "Depok",
     description: "Renovasi rumah minimalis modern",
     thumbnail: "/assets/galeri (3).jpg",
+    type: "Bangun Baru & Renovasi",
     images: [
       "/assets/galeri (3).jpg",
       "/assets/galeri-detail-preview (2).webp",
@@ -61,6 +64,7 @@ const projects = [
     location: "Tangerang",
     description: "Kanopi carport dengan atap alderon anti panas",
     thumbnail: "/assets/galeri (4).jpg",
+    type: "Kanopi",
     images: [
       "/assets/galeri (4).jpg",
       "/assets/galeri-detail-preview (1).webp",
@@ -71,7 +75,6 @@ const projects = [
       "Kami bersyukur bisa mempunyai kanopi dengan atap yang bagus (Alderon), sehingga tidak jadi penghalang jamaah untuk beribadah ke mesjid karena teras jadi aman dari hujan.",
   },
 ];
-
 
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -163,6 +166,9 @@ const Gallery = () => {
                     </h3>
                     <p className="text-sm text-white/90 mb-1">
                       {project.location}
+                    </p>
+                    <p className="text-sm text-white/85">
+                      {project.type}
                     </p>
                     <p className="text-sm text-white/80">
                       {project.description}
