@@ -12,7 +12,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.mandiritehnikhade.com https://maps.googleapis.com; frame-src https://www.google.com https://maps.googleapis.com https://www.youtube.com; frame-ancestors 'self' https://www.google.com https://maps.google.com https://www.youtube.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+          "value": "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://maps.googleapis.com https://www.mandiritehnikhade.com; frame-src https://www.google.com https://maps.googleapis.com https://www.youtube.com; frame-ancestors 'self' https://www.google.com https://maps.google.com https://www.youtube.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
         },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
