@@ -25,7 +25,7 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://bengkel-landing-page.vercel.app/sitemap.xml
+Sitemap: https://www.mandiritehnikhade.com/sitemap.xml
 
 # Optional: speed control (helps big crawlers throttle requests)
 Crawl-delay: 5
