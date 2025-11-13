@@ -16,7 +16,6 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === "development" && componentTagger(),
-    // plugin image optimizer
     ViteImageOptimizer({
       jpg: {
         quality: 75, // compress jpg

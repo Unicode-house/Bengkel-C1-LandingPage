@@ -11,60 +11,74 @@ import {
   Settings,
 } from "lucide-react";
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
+import layananRumah from "/assets/layanan-rumah.webp";
+import layananPagar from "/assets/layanan-pagar.webp";
+import layananKanopi from "/assets/layanan-kanopi.webp";
+import layananTangga from "/assets/layanan-tangga.webp";
+import layananPintu from "/assets/layanan-pintu.webp";
+import layananFoldingGate from "/assets/layanan-foldinggate.webp";
+import layananJendela from "/assets/layanan-jendela.webp";
+import layananMetalwork from "/assets/layanan-metalwork.webp";
 
-// 🧱 Static data di luar komponen → biar gak re-create tiap render
 const services = [
   {
     icon: Home,
     title: "Bangun Baru & Renovasi",
     description:
       "Konstruksi rumah baru dan renovasi dengan standar kualitas tinggi, dikerjakan oleh tim profesional berpengalaman.",
+    image: layananRumah,
   },
   {
     icon: Shield,
     title: "Pagar & Tralis",
     description:
       "Desain dan instalasi pagar serta tralis dengan berbagai model, dari minimalis hingga ornamental yang elegan.",
+    image: layananPagar,
   },
   {
     icon: Sun,
     title: "Kanopi",
     description:
       "Kanopi berkualitas untuk carport, teras, dan area outdoor dengan material tahan lama dan desain menarik.",
+    image: layananKanopi,
   },
   {
     icon: MoveUpRight,
     title: "Relling Tangga & Balkon",
     description:
       "Railing tangga dan balkon stainless steel atau besi dengan desain modern, aman, dan tahan karat.",
+    image: layananTangga,
   },
   {
     icon: DoorOpen,
     title: "Pintu Dorong & Swing",
     description:
       "Pintu dengan sistem dorong dan swing untuk kebutuhan, dari rumah tinggal hingga komersial.",
+    image: layananPintu,
   },
   {
     icon: Grid,
     title: "Rolling Door & Folding Gate",
     description:
       "Rolling door dan folding gate otomatis maupun manual untuk keamanan maksimal properti Anda.",
+    image: layananFoldingGate,
   },
   {
     icon: PanelsTopLeft,
     title: "Kusen, Pintu & Jendela Aluminium",
     description:
       "Kusen pintu, dan jendela aluminium dengan berbagai warna dan finishing, tahan lama dan anti rayap.",
+    image: layananJendela,
   },
   {
     icon: Settings,
     title: "Custom Metalwork",
     description:
       "Layanan pengelasan khusus untuk kebutuhan custom sesuai spesifikasi dan desain yang Anda inginkan.",
+    image: layananMetalwork,
   },
 ];
 
-// ⚙️ Variants animasi (lebih ringan & smooth)
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -119,25 +133,35 @@ const Services = () => {
             {services.map((service) => (
               <motion.div
                 key={service.title}
-                className="bg-[#CFE6F0] p-8 rounded-xl shadow-card 
-                           hover:shadow-xl transition-all duration-300 ease-out 
-                           hover:-translate-y-2 group cursor-pointer select-none"
+                style={{
+                  backgroundImage: `url(${service.image})`,
+                }}
+                className="bg-cover bg-center bg-no-repeat 
+             p-8 rounded-xl shadow-card 
+             hover:shadow-xl transition-all duration-300 ease-out 
+             hover:-translate-y-2 group cursor-pointer select-none
+             relative overflow-hidden"
                 variants={cardVariants}
               >
-                <div
-                  className="bg-[#B6EBFF] w-16 h-16 rounded-2xl flex items-center 
-                             justify-center mb-6 transition-colors duration-300 
-                             group-hover:bg-[#003543]"
-                >
-                  <service.icon
-                    className="h-8 w-8 text-primary transition-colors duration-300 
-                               group-hover:text-white"
-                  />
+                {" "}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
+                <div className="relative z-10">
+                  <div
+                    className="bg-[#B6EBFF]/80 w-16 h-16 rounded-2xl flex items-center 
+  justify-center mb-6 transition-colors duration-300 
+  group-hover:bg-[#003543]/80"
+                  >
+                    <service.icon className="h-8 w-8 text-primary group-hover:text-white" />
+                  </div>
+
+                  <h3 className="font-semibold text-xl mb-3 text-white drop-shadow-md">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-white drop-shadow-md">
+                    {service.description}
+                  </p>
                 </div>
-                <h3 className="font-semibold text-xl mb-3 text-card-foreground">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground">{service.description}</p>
               </motion.div>
             ))}
           </motion.div>
