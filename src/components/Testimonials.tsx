@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/carousel";
 import { motion, Variants, LazyMotion, domAnimation } from "framer-motion";
 
-// 🧱 Static data di luar komponen biar gak re-create tiap render
 const testimonials = [
   {
     name: "Bpk. Kaimudin (Rektor STITSIFA)",
@@ -64,7 +63,6 @@ const testimonials = [
   },
 ];
 
-// 🎬 Motion Variants ringan
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 25 },
   visible: {
@@ -79,6 +77,7 @@ const Testimonials = () => {
     <section id="testimonials" className="py-20 bg-muted/30 bg-white">
       <div className="container mx-auto px-4">
         <LazyMotion features={domAnimation}>
+
           {/* Header */}
           <motion.div
             className="text-center mb-16"
@@ -95,6 +94,7 @@ const Testimonials = () => {
             </p>
           </motion.div>
 
+          {/* Carousel */}
           <Carousel
             opts={{
               align: "start",
@@ -102,11 +102,11 @@ const Testimonials = () => {
             }}
             className="w-full max-w-5xl mx-auto"
           >
-            <CarouselContent>
+            <CarouselContent className="pb-2 snap-x snap-mandatory">
               {testimonials.map((testimonial) => (
                 <CarouselItem
                   key={testimonial.name}
-                  className="md:basis-1/2 lg:basis-1/3 rounded-xl"
+                  className="snap-start md:basis-1/2 lg:basis-1/3 rounded-xl"
                 >
                   <motion.div
                     variants={cardVariants}
@@ -115,12 +115,8 @@ const Testimonials = () => {
                     viewport={{ once: true, amount: 0.2 }}
                   >
                     <Card className="h-full shadow-card hover-lift rounded-xl focus:outline-none focus:ring-0">
-                      <CardContent
-                        className="
-      p-6 flex flex-col justify-between   /* 🔧 biar elemen dalamnya keisi vertikal penuh */
-      h-full bg-[#F5FAFD] rounded-xl min-h-[280px] /* 🔧 kasih min-height tetap */
-    "
-                      >
+                      <CardContent className="p-6 flex flex-col justify-between h-full bg-[#F5FAFD] rounded-xl min-h-[280px]">
+                        
                         {/* ⭐ Rating */}
                         <div className="flex gap-1 mb-4 select-none">
                           {Array.from({ length: testimonial.rating }).map(
@@ -134,19 +130,12 @@ const Testimonials = () => {
                         </div>
 
                         {/* 💬 Comment */}
-                        <p
-                          className="
-        text-muted-foreground italic leading-relaxed select-none
-        flex-grow mb-6 line-clamp-5  /* 🔧 biar maksimal 5 baris aja (optional) */
-      "
-                        >
+                        <p className="text-muted-foreground italic leading-relaxed select-none flex-grow mb-6 line-clamp-5">
                           “{testimonial.comment}”
                         </p>
 
                         {/* 👤 Author */}
                         <div className="mt-auto">
-                          {" "}
-                          {/* 🔧 push ke bawah */}
                           <p className="font-semibold text-card-foreground select-none">
                             {testimonial.name}
                           </p>
@@ -161,10 +150,38 @@ const Testimonials = () => {
               ))}
             </CarouselContent>
 
-            {/* Controls */}
+            {/* Controls (desktop only) */}
             <CarouselPrevious className="hidden md:flex focus:outline-none focus:ring-0" />
             <CarouselNext className="hidden md:flex focus:outline-none focus:ring-0" />
           </Carousel>
+
+          {/* 👉 Swipe Indicator (Mobile Only) */}
+          <div className="mt-4 flex items-center justify-center gap-2 md:hidden select-none">
+            <span className="text-muted-foreground text-sm">Geser</span>
+
+            <div className="flex gap-1">
+              <svg
+                className="w-4 h-4 text-muted-foreground animate-bounce-x"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M15 18l6-6-6-6" />
+              </svg>
+
+              <svg
+                className="w-4 h-4 text-muted-foreground animate-bounce-x delay-150"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M15 18l6-6-6-6" />
+              </svg>
+            </div>
+          </div>
+
         </LazyMotion>
       </div>
     </section>

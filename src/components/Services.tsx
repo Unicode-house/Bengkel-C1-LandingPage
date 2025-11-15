@@ -171,5 +171,4 @@ const Services = () => {
   );
 };
 
-// 🚀 React.memo = cegah rerender kalau parent update
 export default memo(Services);
